@@ -90,7 +90,7 @@ const Header = ({ darkMode, setDarkMode, onModuleChange }) => {
             
             <div className="text-right bg-gray-50 backdrop-blur-sm rounded-xl px-4 py-2 border border-gray-200">
               <div className="font-semibold text-sm text-gray-900">BODE EV Admin</div>
-              <div className="text-xs text-gray-600">Network Administrator</div>
+              <div className="text-xs text-gray-600">Sales Operations</div>
             </div>
           </div>
         </div>
