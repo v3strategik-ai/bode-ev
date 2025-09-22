@@ -40,7 +40,7 @@ const Header = ({ darkMode, setDarkMode, onModuleChange }) => {
             <h1 className="text-2xl font-bold text-gray-900">
               BODE EV Enterprise V3
             </h1>
-            <p className="text-sm text-gray-600 font-medium">EV charging that just works • Enterprise Network Management</p>
+            <p className="text-sm text-gray-600 font-medium">EV charging solutions & sales platform • Lead Generation & Quoting System</p>
           </div>
         </div>
 
