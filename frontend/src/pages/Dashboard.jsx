@@ -63,7 +63,7 @@ const Dashboard = () => {
 
   return (
     <div className={`min-h-screen bg-gray-50 ${darkMode ? 'dark' : ''} relative`}>
-      <Header darkMode={darkMode} setDarkMode={setDarkMode} />
+      <Header darkMode={darkMode} setDarkMode={setDarkMode} onModuleChange={setActiveModule} />
       <div className="flex">
         <Sidebar activeModule={activeModule} onModuleChange={setActiveModule} />
         <div className="flex-1">
