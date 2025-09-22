@@ -9,22 +9,22 @@ const Header = ({ darkMode, setDarkMode }) => {
       <div className="flex items-center justify-between">
         {/* Left section - BODE EV Logo and title */}
         <div className="flex items-center space-x-6">
-          <div className="flex items-center space-x-3">
+          <div className="flex items-center space-x-4">
             <div className="flex items-baseline space-x-1">
-              <span className="bg-white text-green-600 px-3 py-1.5 rounded-xl font-bold text-lg lowercase">
+              <span className="bg-green-500 text-white px-3 py-1.5 rounded-lg font-bold text-lg lowercase shadow-md">
                 bode
               </span>
-              <span className="bg-blue-600 text-white px-2 py-1.5 rounded-lg font-bold text-sm uppercase tracking-wider">
+              <span className="bg-blue-600 text-white px-2 py-1.5 rounded-md font-bold text-sm uppercase tracking-wider shadow-md">
                 EV
               </span>
             </div>
-            <span className="text-xs opacity-75 font-medium">Enterprise V3</span>
+            <span className="text-xs text-gray-500 font-medium bg-gray-100 px-2 py-1 rounded">Enterprise V3</span>
           </div>
-          <div className="border-l border-white/20 pl-6 ml-6">
-            <h1 className="text-2xl font-bold bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
+          <div className="border-l border-gray-300 pl-6 ml-6">
+            <h1 className="text-2xl font-bold text-gray-900">
               BODE EV Enterprise V3
             </h1>
-            <p className="text-sm opacity-90 font-medium">EV charging that just works • Quantum-Powered CRM</p>
+            <p className="text-sm text-gray-600 font-medium">EV charging that just works • Enterprise Network Management</p>
           </div>
         </div>
 
