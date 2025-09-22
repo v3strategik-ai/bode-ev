@@ -88,7 +88,9 @@ const MainContent = () => {
                 <Target className="h-4 w-4 mr-2" />
                 Add New Lead
               </Button>
-              <Button variant="outline">Import Leads</Button>
+              <Button variant="outline">
+                Import Leads
+              </Button>
             </div>
           </div>
 
@@ -97,7 +99,8 @@ const MainContent = () => {
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center">
-                  <Target className="h-5 w-5 mr-2 text-blue-600" />Lead Capture
+                  <Target className="h-5 w-5 mr-2 text-blue-600" />
+                  Lead Capture
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -105,10 +108,12 @@ const MainContent = () => {
                 <Button size="sm" className="w-full">Configure</Button>
               </CardContent>
             </Card>
+
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center">
-                  <Users className="h-5 w-5 mr-2 text-green-600" />Lead Scoring
+                  <Users className="h-5 w-5 mr-2 text-green-600" />
+                  Lead Scoring
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -116,10 +121,12 @@ const MainContent = () => {
                 <Button size="sm" variant="outline" className="w-full">View Rules</Button>
               </CardContent>
             </Card>
+
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center">
-                  <Calendar className="h-5 w-5 mr-2 text-indigo-600" />Follow-up Automation
+                  <Calendar className="h-5 w-5 mr-2 text-indigo-600" />
+                  Follow-up Automation
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -127,10 +134,12 @@ const MainContent = () => {
                 <Button size="sm" variant="outline" className="w-full">Setup Flows</Button>
               </CardContent>
             </Card>
+
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center">
-                  <MapPin className="h-5 w-5 mr-2 text-purple-600" />Territory Planning
+                  <MapPin className="h-5 w-5 mr-2 text-purple-600" />
+                  Territory Planning
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -221,7 +230,9 @@ const MainContent = () => {
                 <Calculator className="h-4 w-4 mr-2" />
                 New Quote
               </Button>
-              <Button variant="outline">Quote Templates</Button>
+              <Button variant="outline">
+                Quote Templates
+              </Button>
             </div>
           </div>
 
@@ -230,7 +241,8 @@ const MainContent = () => {
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center">
-                  <Calculator className="h-5 w-5 mr-2 text-green-600" />Smart Calculator
+                  <Calculator className="h-5 w-5 mr-2 text-green-600" />
+                  Smart Calculator
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -238,10 +250,12 @@ const MainContent = () => {
                 <Button size="sm" className="w-full">Launch Calculator</Button>
               </CardContent>
             </Card>
+
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center">
-                  <FileText className="h-5 w-5 mr-2 text-blue-600" />Quote Templates
+                  <FileText className="h-5 w-5 mr-2 text-blue-600" />
+                  Quote Templates
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -249,10 +263,12 @@ const MainContent = () => {
                 <Button size="sm" variant="outline" className="w-full">Manage Templates</Button>
               </CardContent>
             </Card>
+
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center">
-                  <TrendingUp className="h-5 w-5 mr-2 text-indigo-600" />Price Optimization
+                  <TrendingUp className="h-5 w-5 mr-2 text-indigo-600" />
+                  Price Optimization
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -260,10 +276,12 @@ const MainContent = () => {
                 <Button size="sm" variant="outline" className="w-full">View Analytics</Button>
               </CardContent>
             </Card>
+
             <Card className="hover:shadow-lg transition-all duration-300">
               <CardHeader>
                 <CardTitle className="text-lg flex items-center">
-                  <Calendar className="h-5 w-5 mr-2 text-purple-600" />Approval Workflow
+                  <Calendar className="h-5 w-5 mr-2 text-purple-600" />
+                  Approval Workflow
                 </CardTitle>
               </CardHeader>
               <CardContent>
@@ -330,132 +348,130 @@ const MainContent = () => {
 
     // Default dashboard view
     return (
-      <>
-        {/* KPI Cards */}
-        <div className="grid grid-cols-4 gap-8 mb-10">
-          {kpiCards.map((kpi, index) => {
-            const Icon = kpi.icon;
-            return (
-              <Card key={index} className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-0 shadow-lg overflow-hidden bg-white/80 backdrop-blur-sm">
-                <div className={`h-1 w-full bg-gradient-to-r ${kpi.gradient}`}></div>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 pt-6">
-                  <CardTitle className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
-                    {kpi.title}
-                  </CardTitle>
-                  <div className={`p-3 rounded-2xl bg-gradient-to-br ${kpi.bgGradient} shadow-lg group-hover:shadow-xl transition-all duration-300`}>
-                    <Icon className={`h-6 w-6 bg-gradient-to-br ${kpi.gradient} bg-clip-text text-transparent`} />
-                  </div>
-                </CardHeader>
-                <CardContent className="pt-0">
-                  <div className="text-4xl font-bold text-gray-900 mb-2 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
-                    {kpi.value}
-                  </div>
-                  <p className={`text-sm font-semibold bg-gradient-to-r ${kpi.gradient} bg-clip-text text-transparent`}>
-                    {kpi.change}
-                  </p>
-                </CardContent>
-              </Card>
-            );
-          })}
-        </div>
-
-        {/* Charts and Organization Metrics */}
-        <div className="grid grid-cols-3 gap-8 mb-8">
-          {/* Revenue Chart */}
-          <div className="col-span-2">
-            <Card className="hover:shadow-2xl transition-all duration-500 border-0 shadow-lg bg-white/80 backdrop-blur-sm overflow-hidden">
-              <div className="h-1 w-full bg-gradient-to-r from-green-500 to-blue-500"></div>
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent flex items-center">
-                  <div className="w-2 h-8 bg-gradient-to-b from-green-500 to-blue-500 rounded-full mr-3"></div>
-                  Sales Revenue Trend
+      <div className="grid grid-cols-4 gap-8 mb-10">
+        {kpiCards.map((kpi, index) => {
+          const Icon = kpi.icon;
+          return (
+            <Card key={index} className="group hover:shadow-2xl transition-all duration-500 transform hover:scale-105 border-0 shadow-lg overflow-hidden bg-white/80 backdrop-blur-sm">
+              <div className={`h-1 w-full bg-gradient-to-r ${kpi.gradient}`}></div>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-3 pt-6">
+                <CardTitle className="text-sm font-semibold text-gray-600 uppercase tracking-wider">
+                  {kpi.title}
                 </CardTitle>
+                <div className={`p-3 rounded-2xl bg-gradient-to-br ${kpi.bgGradient} shadow-lg group-hover:shadow-xl transition-all duration-300`}>
+                  <Icon className={`h-6 w-6 bg-gradient-to-br ${kpi.gradient} bg-clip-text text-transparent`} />
+                </div>
               </CardHeader>
-              <CardContent>
-                <RevenueChart />
+              <CardContent className="pt-0">
+                <div className="text-4xl font-bold text-gray-900 mb-2 bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+                  {kpi.value}
+                </div>
+                <p className={`text-sm font-semibold bg-gradient-to-r ${kpi.gradient} bg-clip-text text-transparent`}>
+                  {kpi.change}
+                </p>
               </CardContent>
             </Card>
-          </div>
+          );
+        })}
+      </div>
 
-          {/* Organization Metrics */}
-          <div className="col-span-1">
-            <Card className="hover:shadow-2xl transition-all duration-500 border-0 shadow-lg bg-white/80 backdrop-blur-sm overflow-hidden h-full">
-              <div className="h-1 w-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
-              <CardHeader className="pb-4">
-                <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent flex items-center">
-                  <div className="w-2 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-3"></div>
-                  Sales KPIs
-                </CardTitle>
-              </CardHeader>
-              <CardContent className="space-y-4">
-                {organizationMetrics.map((metric, index) => (
-                  <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
-                    <span className="text-sm font-medium text-gray-700">{metric.label}</span>
-                    <span className={`text-sm font-bold px-3 py-1 rounded-full ${
-                      metric.color === 'green' ? 'bg-green-100 text-green-700' :
-                      metric.color === 'blue' ? 'bg-blue-100 text-blue-700' :
-                      metric.color === 'indigo' ? 'bg-indigo-100 text-indigo-700' :
-                      'bg-purple-100 text-purple-700'
-                    }`}>
-                      {metric.value}
-                    </span>
-                  </div>
-                ))}
-              </CardContent>
-            </Card>
-          </div>
-        </div>
-
-        {/* Quick Actions for Core Business Functions */}
-        <div className="grid grid-cols-4 gap-6">
-          <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={() => setActiveTab('leads')}>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <Target className="h-8 w-8 text-blue-600" />
-                <Badge className="bg-blue-600 text-white">High Priority</Badge>
-              </div>
-              <h3 className="text-lg font-bold text-blue-900 mb-2">Lead Generation</h3>
-              <p className="text-sm text-blue-700 mb-4">Capture, score, and nurture prospects with automated workflows</p>
-              <div className="text-2xl font-bold text-blue-600">{hotLeads.length} Active Leads</div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={() => setActiveTab('quotes')}>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <Calculator className="h-8 w-8 text-green-600" />
-                <Badge className="bg-green-600 text-white">Revenue Focus</Badge>
-              </div>
-              <h3 className="text-lg font-bold text-green-900 mb-2">Quote Management</h3>
-              <p className="text-sm text-green-700 mb-4">Smart pricing, templates, and approval workflows</p>
-              <div className="text-2xl font-bold text-green-600">{pendingQuotes.length} Pending Quotes</div>
-            </CardContent>
-          </Card>
-          
-          <Card className="bg-gradient-to-br from-indigo-50 to-indigo-100 border-indigo-200 hover:shadow-xl transition-all duration-300">
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <Activity className="h-8 w-8 text-indigo-600" />
-                <Badge className="bg-indigo-600 text-white">Efficiency</Badge>
-              </div>
-              <h3 className="text-lg font-bold text-indigo-900 mb-2">Organization Hub</h3>
-              <p className="text-sm text-indigo-700 mb-4">Streamlined processes and automated workflows</p>
-              <div className="text-2xl font-bold text-indigo-600">98.7% Follow-up Rate</div>
-            </CardContent>
-          </Card>
-
-          <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={() => setActiveTab('analytics')}>
-            <CardContent className="p-6">
-              <div className="flex items-center justify-between mb-4">
-                <BarChart3 className="h-8 w-8 text-purple-600" />
-                <Badge className="bg-purple-600 text-white">Executive</Badge>
-              </div>
-              <h3 className="text-lg font-bold text-purple-900 mb-2">Advanced Analytics</h3>
-              <p className="text-sm text-purple-700 mb-4">Strategic insights and competitive intelligence</p>
-              <div className="text-2xl font-bold text-purple-600">$18.7M Pipeline</div>
+      {/* Charts and Organization Metrics */}
+      <div className="grid grid-cols-3 gap-8 mb-8">
+        {/* Revenue Chart */}
+        <div className="col-span-2">
+          <Card className="hover:shadow-2xl transition-all duration-500 border-0 shadow-lg bg-white/80 backdrop-blur-sm overflow-hidden">
+            <div className="h-1 w-full bg-gradient-to-r from-green-500 to-blue-500"></div>
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent flex items-center">
+                <div className="w-2 h-8 bg-gradient-to-b from-green-500 to-blue-500 rounded-full mr-3"></div>
+                Sales Revenue Trend
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <RevenueChart />
             </CardContent>
           </Card>
         </div>
+
+        {/* Organization Metrics */}
+        <div className="col-span-1">
+          <Card className="hover:shadow-2xl transition-all duration-500 border-0 shadow-lg bg-white/80 backdrop-blur-sm overflow-hidden h-full">
+            <div className="h-1 w-full bg-gradient-to-r from-indigo-500 to-purple-500"></div>
+            <CardHeader className="pb-4">
+              <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent flex items-center">
+                <div className="w-2 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-3"></div>
+                Sales KPIs
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              {organizationMetrics.map((metric, index) => (
+                <div key={index} className="flex justify-between items-center p-3 bg-gray-50 rounded-xl">
+                  <span className="text-sm font-medium text-gray-700">{metric.label}</span>
+                  <span className={`text-sm font-bold px-3 py-1 rounded-full ${
+                    metric.color === 'green' ? 'bg-green-100 text-green-700' :
+                    metric.color === 'blue' ? 'bg-blue-100 text-blue-700' :
+                    metric.color === 'indigo' ? 'bg-indigo-100 text-indigo-700' :
+                    'bg-purple-100 text-purple-700'
+                  }`}>
+                    {metric.value}
+                  </span>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
+      </div>
+
+      {/* Quick Actions for Core Business Functions */}
+      <div className="grid grid-cols-4 gap-6">
+        <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={() => setActiveTab('leads')}>
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Target className="h-8 w-8 text-blue-600" />
+              <Badge className="bg-blue-600 text-white">High Priority</Badge>
+            </div>
+            <h3 className="text-lg font-bold text-blue-900 mb-2">Lead Generation</h3>
+            <p className="text-sm text-blue-700 mb-4">Capture, score, and nurture prospects with automated workflows</p>
+            <div className="text-2xl font-bold text-blue-600">{hotLeads.length} Active Leads</div>
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-gradient-to-br from-green-50 to-green-100 border-green-200 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={() => setActiveTab('quotes')}>
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Calculator className="h-8 w-8 text-green-600" />
+              <Badge className="bg-green-600 text-white">Revenue Focus</Badge>
+            </div>
+            <h3 className="text-lg font-bold text-green-900 mb-2">Quote Management</h3>
+            <p className="text-sm text-green-700 mb-4">Smart pricing, templates, and approval workflows</p>
+            <div className="text-2xl font-bold text-green-600">{pendingQuotes.length} Pending Quotes</div>
+          </CardContent>
+        </Card>
+        
+        <Card className="bg-gradient-to-br from-indigo-50 to-indigo-100 border-indigo-200 hover:shadow-xl transition-all duration-300">
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <Activity className="h-8 w-8 text-indigo-600" />
+              <Badge className="bg-indigo-600 text-white">Efficiency</Badge>
+            </div>
+            <h3 className="text-lg font-bold text-indigo-900 mb-2">Organization Hub</h3>
+            <p className="text-sm text-indigo-700 mb-4">Streamlined processes and automated workflows</p>
+            <div className="text-2xl font-bold text-indigo-600">98.7% Follow-up Rate</div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={() => setActiveTab('analytics')}>
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <BarChart3 className="h-8 w-8 text-purple-600" />
+              <Badge className="bg-purple-600 text-white">Executive</Badge>
+            </div>
+            <h3 className="text-lg font-bold text-purple-900 mb-2">Advanced Analytics</h3>
+            <p className="text-sm text-purple-700 mb-4">Strategic insights and competitive intelligence</p>
+            <div className="text-2xl font-bold text-purple-600">$18.7M Pipeline</div>
+          </CardContent>
+        </Card>
+      </div>
       </>
     );
   };
