@@ -98,21 +98,33 @@ const Header = ({ darkMode, setDarkMode, onModuleChange }) => {
 
       {/* Action buttons row */}
       <div className="flex items-center space-x-4 mt-6 pt-4 border-t border-gray-100">
-        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0">
-          <span className="mr-3 text-lg">+</span>
-          Add Charging Station
+        <Button 
+          onClick={handleQuoteRequest}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0"
+        >
+          <span className="mr-3 text-lg">💰</span>
+          Create Quote
         </Button>
-        <Button className="bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0">
-          <span className="mr-3">⚡</span>
-          Schedule Service
+        <Button 
+          onClick={handleLeadGeneration}
+          className="bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0"
+        >
+          <span className="mr-3">🎯</span>
+          Generate Leads
         </Button>
-        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0">
+        <Button 
+          onClick={handleReportGeneration}
+          className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0"
+        >
           <span className="mr-3">📊</span>
-          Generate Report
+          Sales Report
         </Button>
-        <Button className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0">
+        <Button 
+          onClick={handleSettings}
+          className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0"
+        >
           <span className="mr-3">⚙️</span>
-          System Settings
+          Settings
         </Button>
       </div>
     </header>
