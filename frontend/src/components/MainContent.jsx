@@ -449,7 +449,7 @@ const MainContent = () => {
             <CardHeader className="pb-4">
               <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent flex items-center">
                 <div className="w-2 h-8 bg-gradient-to-b from-indigo-500 to-purple-500 rounded-full mr-3"></div>
-                Organization KPIs
+                Sales KPIs
               </CardTitle>
             </CardHeader>
             <CardContent className="space-y-4">
