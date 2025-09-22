@@ -3,7 +3,23 @@ import { Search, Moon, Sun } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 
-const Header = ({ darkMode, setDarkMode }) => {
+const Header = ({ darkMode, setDarkMode, onModuleChange }) => {
+  
+  const handleQuoteRequest = () => {
+    onModuleChange('quotes');
+  };
+
+  const handleLeadGeneration = () => {
+    onModuleChange('leads');
+  };
+
+  const handleReportGeneration = () => {
+    onModuleChange('analytics');
+  };
+
+  const handleSettings = () => {
+    onModuleChange('settings');
+  };
   return (
     <header className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
       <div className="flex items-center justify-between">
