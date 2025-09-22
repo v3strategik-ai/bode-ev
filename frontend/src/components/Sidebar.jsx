@@ -9,7 +9,7 @@ import {
   FileText, 
   Users, 
   BarChart3, 
-  Cube, 
+  Box, 
   Leaf, 
   Mic, 
   Lock, 
