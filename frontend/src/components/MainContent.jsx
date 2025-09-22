@@ -70,59 +70,7 @@ const MainContent = () => {
     { label: 'Project Completion', value: '96.8%', color: 'purple' }
   ];
 
-  return (
-    <div className="flex-1 p-8 bg-gradient-to-br from-gray-50/50 via-white to-blue-50/20 min-h-screen">
-      {/* Navigation Tabs - Always visible */}
-      <div className="flex space-x-1 mb-8 bg-gray-100 p-1 rounded-xl w-fit">
-        <button
-          onClick={() => setActiveTab('dashboard')}
-          className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-            activeTab === 'dashboard' 
-              ? 'bg-white text-blue-600 shadow-md' 
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          Dashboard
-        </button>
-        <button
-          onClick={() => setActiveTab('analytics')}
-          className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-            activeTab === 'analytics' 
-              ? 'bg-white text-blue-600 shadow-md' 
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          <BarChart3 className="h-4 w-4 mr-2 inline" />
-          Executive Analytics
-        </button>
-        <button
-          onClick={() => setActiveTab('leads')}
-          className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-            activeTab === 'leads' 
-              ? 'bg-white text-blue-600 shadow-md' 
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          Lead Generation
-        </button>
-        <button
-          onClick={() => setActiveTab('quotes')}
-          className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
-            activeTab === 'quotes' 
-              ? 'bg-white text-blue-600 shadow-md' 
-              : 'text-gray-600 hover:text-gray-900'
-          }`}
-        >
-          Quote Management
-        </button>
-      </div>
-
-      {/* Dynamic Content Based on Active Tab */}
-      {renderTabContent()}
-    </div>
-  );
-
-  function renderTabContent() {
+  const renderTabContent = () => {
     if (activeTab === 'analytics') {
       return <ExecutiveDashboard />;
     }
