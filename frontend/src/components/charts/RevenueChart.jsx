@@ -72,47 +72,47 @@ const RevenueChart = () => {
           </text>
         ))}
 
-        {/* Revenue line */}
+        {/* Modern revenue line */}
         <path
           d={pathData}
           fill="none"
-          stroke="#10b981"
-          strokeWidth="3"
+          stroke="url(#chartGradient)"
+          strokeWidth="4"
           strokeLinecap="round"
           strokeLinejoin="round"
+          filter="drop-shadow(0 4px 6px rgba(16, 185, 129, 0.2))"
         />
 
-        {/* Data points */}
+        {/* Modern data points */}
         {dataPoints.map((point, index) => {
           const x = (index / (dataPoints.length - 1)) * (chartWidth - 40) + 20;
           const y = chartHeight - 40 - ((point.value / maxValue) * (chartHeight - 80));
           return (
-            <circle
-              key={index}
-              cx={x}
-              cy={y}
-              r="4"
-              fill="#10b981"
-              stroke="white"
-              strokeWidth="2"
-            />
+            <g key={index} className="group">
+              <circle
+                cx={x}
+                cy={y}
+                r="6"
+                fill="white"
+                stroke="url(#chartGradient)"
+                strokeWidth="3"
+                className="drop-shadow-lg hover:r-8 transition-all duration-300"
+              />
+              <circle
+                cx={x}
+                cy={y}
+                r="3"
+                fill="url(#chartGradient)"
+              />
+            </g>
           );
         })}
 
-        {/* Area under curve */}
+        {/* Modern area under curve */}
         <path
           d={`${pathData} L ${(dataPoints.length - 1) * (chartWidth - 40) / (dataPoints.length - 1) + 20} ${chartHeight - 40} L 20 ${chartHeight - 40} Z`}
-          fill="url(#gradient)"
-          opacity="0.1"
+          fill="url(#areaGradient)"
         />
-
-        {/* Gradient definition */}
-        <defs>
-          <linearGradient id="gradient" x1="0%" y1="0%" x2="0%" y2="100%">
-            <stop offset="0%" stopColor="#10b981" stopOpacity="0.3" />
-            <stop offset="100%" stopColor="#10b981" stopOpacity="0" />
-          </linearGradient>
-        </defs>
       </svg>
     </div>
   );
