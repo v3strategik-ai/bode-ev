@@ -17,24 +17,28 @@ import {
   HelpCircle 
 } from 'lucide-react';
 
-const Sidebar = () => {
+const Sidebar = ({ activeModule, onModuleChange }) => {
   const menuItems = [
-    { icon: LayoutDashboard, label: 'Network Dashboard', count: 1247, active: true },
-    { icon: Zap, label: 'Charging Stations', count: 856 },
-    { icon: Bot, label: 'Service Automation', count: 12 },
-    { icon: MessageSquare, label: 'Customer Support', count: 34 },
-    { icon: Target, label: 'Site Planning', count: 23 },
-    { icon: Briefcase, label: 'Installation Jobs', count: 67 },
-    { icon: FileText, label: 'Service Reports', count: 156 },
-    { icon: Users, label: 'Technician Hub', count: 89 },
-    { icon: BarChart3, label: 'Performance Analytics', count: 15 },
-    { icon: Box, label: 'Equipment Inventory', badge: 'NEW' },
-    { icon: Leaf, label: 'Sustainability Metrics', badge: 'NEW' },
-    { icon: Mic, label: 'Voice Commands', badge: 'BETA' },
-    { icon: Lock, label: 'Security Center', count: 3 },
-    { icon: CreditCard, label: 'Billing & Payments', count: 412 },
-    { icon: HelpCircle, label: 'Support Center', count: 7 },
+    { id: 'dashboard', icon: LayoutDashboard, label: 'Network Dashboard', count: 1247 },
+    { id: 'stations', icon: Zap, label: 'Charging Stations', count: 856 },
+    { id: 'automation', icon: Bot, label: 'Service Automation', count: 12 },
+    { id: 'support', icon: MessageSquare, label: 'Customer Support', count: 34 },
+    { id: 'planning', icon: Target, label: 'Site Planning', count: 23 },
+    { id: 'jobs', icon: Briefcase, label: 'Installation Jobs', count: 67 },
+    { id: 'reports', icon: FileText, label: 'Service Reports', count: 156 },
+    { id: 'technicians', icon: Users, label: 'Technician Hub', count: 89 },
+    { id: 'analytics', icon: BarChart3, label: 'Performance Analytics', count: 15 },
+    { id: 'inventory', icon: Box, label: 'Equipment Inventory', badge: 'NEW' },
+    { id: 'sustainability', icon: Leaf, label: 'Sustainability Metrics', badge: 'NEW' },
+    { id: 'voice', icon: Mic, label: 'Voice Commands', badge: 'BETA' },
+    { id: 'security', icon: Lock, label: 'Security Center', count: 3 },
+    { id: 'billing', icon: CreditCard, label: 'Billing & Payments', count: 412 },
+    { id: 'help', icon: HelpCircle, label: 'Support Center', count: 7 },
   ];
+
+  const handleModuleClick = (moduleId) => {
+    onModuleChange(moduleId);
+  };
 
   return (
     <div className="w-72 bg-white/80 backdrop-blur-xl border-r border-gray-200/50 min-h-screen shadow-xl">
@@ -52,18 +56,21 @@ const Sidebar = () => {
       <nav className="p-4 space-y-2">
         {menuItems.map((item, index) => {
           const Icon = item.icon;
+          const isActive = activeModule === item.id;
+          
           return (
             <div
               key={index}
+              onClick={() => handleModuleClick(item.id)}
               className={`group flex items-center justify-between px-4 py-3.5 rounded-2xl cursor-pointer transition-all duration-300 ${
-                item.active 
+                isActive 
                   ? 'bg-gradient-to-r from-green-50 to-blue-50 text-green-700 border-l-4 border-green-500 shadow-lg shadow-green-100/50 transform scale-[1.02]' 
                   : 'text-gray-700 hover:bg-gradient-to-r hover:from-gray-50 hover:to-white hover:shadow-lg hover:shadow-gray-100/50 hover:transform hover:scale-[1.01]'
               }`}
             >
               <div className="flex items-center space-x-4">
                 <div className={`p-2 rounded-xl transition-all duration-300 ${
-                  item.active
+                  isActive
                     ? 'bg-green-100 text-green-600 shadow-md'
                     : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:shadow-md'
                 }`}>
@@ -75,7 +82,7 @@ const Sidebar = () => {
               <div className="flex items-center space-x-2">
                 {item.count && (
                   <span className={`text-xs px-3 py-1 rounded-full font-medium transition-all duration-300 ${
-                    item.active
+                    isActive
                       ? 'bg-green-100 text-green-700'
                       : 'bg-gray-200 text-gray-600 group-hover:bg-gray-300'
                   }`}>
