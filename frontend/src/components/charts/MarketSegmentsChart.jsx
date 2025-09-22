@@ -12,34 +12,47 @@ const MarketSegmentsChart = () => {
   let currentAngle = -90; // Start from top
 
   return (
-    <div className="flex flex-col items-center">
-      {/* Pie Chart */}
-      <div className="relative mb-4">
-        <svg width="200" height="200" className="transform rotate-0">
+    <div className="flex flex-col items-center p-4">
+      {/* Modern Pie Chart */}
+      <div className="relative mb-6 group">
+        <svg width="220" height="220" className="transform rotate-0 filter drop-shadow-lg">
+          {/* Background circle */}
           <circle
-            cx="100"
-            cy="100"
-            r="80"
+            cx="110"
+            cy="110"
+            r="85"
             fill="none"
-            stroke="#f3f4f6"
-            strokeWidth="2"
+            stroke="#f1f5f9"
+            strokeWidth="1"
+            opacity="0.3"
           />
+          
+          {/* Gradient definitions */}
+          <defs>
+            {segments.map((segment, index) => (
+              <linearGradient key={index} id={`gradient-${index}`} x1="0%" y1="0%" x2="100%" y2="100%">
+                <stop offset="0%" stopColor={segment.color} />
+                <stop offset="100%" stopColor={segment.color} stopOpacity="0.8" />
+              </linearGradient>
+            ))}
+          </defs>
+          
           {segments.map((segment, index) => {
             const angle = (segment.value / total) * 360;
             const startAngle = currentAngle;
             const endAngle = currentAngle + angle;
             
-            const x1 = 100 + 80 * Math.cos((startAngle * Math.PI) / 180);
-            const y1 = 100 + 80 * Math.sin((startAngle * Math.PI) / 180);
-            const x2 = 100 + 80 * Math.cos((endAngle * Math.PI) / 180);
-            const y2 = 100 + 80 * Math.sin((endAngle * Math.PI) / 180);
+            const x1 = 110 + 85 * Math.cos((startAngle * Math.PI) / 180);
+            const y1 = 110 + 85 * Math.sin((startAngle * Math.PI) / 180);
+            const x2 = 110 + 85 * Math.cos((endAngle * Math.PI) / 180);
+            const y2 = 110 + 85 * Math.sin((endAngle * Math.PI) / 180);
             
             const largeArcFlag = angle > 180 ? 1 : 0;
             
             const pathData = [
-              `M 100 100`,
+              `M 110 110`,
               `L ${x1} ${y1}`,
-              `A 80 80 0 ${largeArcFlag} 1 ${x2} ${y2}`,
+              `A 85 85 0 ${largeArcFlag} 1 ${x2} ${y2}`,
               'Z'
             ].join(' ');
 
@@ -49,52 +62,60 @@ const MarketSegmentsChart = () => {
               <path
                 key={index}
                 d={pathData}
-                fill={segment.color}
+                fill={`url(#gradient-${index})`}
                 stroke="white"
-                strokeWidth="2"
-                className="hover:opacity-80 transition-opacity cursor-pointer"
+                strokeWidth="3"
+                className="hover:opacity-90 transition-all duration-300 cursor-pointer filter drop-shadow-md"
+                style={{
+                  filter: 'drop-shadow(0 4px 6px rgba(0, 0, 0, 0.1))'
+                }}
               />
             );
           })}
           
-          {/* Center circle */}
+          {/* Modern center circle */}
           <circle
-            cx="100"
-            cy="100"
-            r="30"
+            cx="110"
+            cy="110"
+            r="35"
             fill="white"
-            stroke="#e5e7eb"
-            strokeWidth="2"
+            stroke="#e2e8f0"
+            strokeWidth="3"
+            className="filter drop-shadow-lg"
           />
           <text
-            x="100"
-            y="95"
+            x="110"
+            y="105"
             textAnchor="middle"
-            className="text-sm font-semibold fill-gray-700"
+            className="text-sm font-bold fill-gray-700"
           >
             Total
           </text>
           <text
-            x="100"
-            y="110"
+            x="110"
+            y="120"
             textAnchor="middle"
-            className="text-xs fill-gray-500"
+            className="text-xs fill-gray-500 font-semibold"
           >
             {total}%
           </text>
         </svg>
       </div>
 
-      {/* Legend */}
-      <div className="space-y-2">
+      {/* Modern Legend */}
+      <div className="space-y-3 w-full">
         {segments.map((segment, index) => (
-          <div key={index} className="flex items-center space-x-2">
-            <div
-              className="w-3 h-3 rounded-full"
-              style={{ backgroundColor: segment.color }}
-            ></div>
-            <span className="text-sm text-gray-600">
-              {segment.label} ({segment.value}%)
+          <div key={index} className="flex items-center justify-between p-3 bg-gray-50/50 rounded-2xl border border-gray-100 hover:bg-gray-50 transition-all duration-300 backdrop-blur-sm">
+            <div className="flex items-center space-x-3">
+              <div
+                className={`w-4 h-4 rounded-full shadow-md bg-gradient-to-br ${segment.gradient}`}
+              ></div>
+              <span className="text-sm font-semibold text-gray-700">
+                {segment.label}
+              </span>
+            </div>
+            <span className="text-sm font-bold text-gray-900 bg-white px-3 py-1 rounded-full shadow-sm">
+              {segment.value}%
             </span>
           </div>
         ))}
