@@ -1,11 +1,12 @@
 import React, { useState } from 'react';
-import { Zap, DollarSign, TrendingUp, Activity, Target, Users, FileText, Calculator, Calendar, MapPin } from 'lucide-react';
+import { Zap, DollarSign, TrendingUp, Activity, Target, Users, FileText, Calculator, Calendar, MapPin, BarChart3 } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from './ui/card';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
 import { Badge } from './ui/badge';
 import RevenueChart from './charts/RevenueChart';
 import MarketSegmentsChart from './charts/MarketSegmentsChart';
+import ExecutiveDashboard from './ExecutiveDashboard';
 
 const MainContent = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
@@ -68,6 +69,14 @@ const MainContent = () => {
     { label: 'Follow-up Rate', value: '98.7%', color: 'indigo' },
     { label: 'Project Completion', value: '96.8%', color: 'purple' }
   ];
+
+  if (activeTab === 'analytics') {
+    return (
+      <div className="flex-1 p-8 bg-gradient-to-br from-gray-50/50 via-white to-blue-50/20 min-h-screen">
+        <ExecutiveDashboard />
+      </div>
+    );
+  }
 
   if (activeTab === 'leads') {
     return (
@@ -355,6 +364,17 @@ const MainContent = () => {
           Dashboard
         </button>
         <button
+          onClick={() => setActiveTab('analytics')}
+          className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
+            activeTab === 'analytics' 
+              ? 'bg-white text-blue-600 shadow-md' 
+              : 'text-gray-600 hover:text-gray-900'
+          }`}
+        >
+          <BarChart3 className="h-4 w-4 mr-2 inline" />
+          Executive Analytics
+        </button>
+        <button
           onClick={() => setActiveTab('leads')}
           className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
             activeTab === 'leads' 
@@ -452,7 +472,7 @@ const MainContent = () => {
       </div>
 
       {/* Quick Actions for Core Business Functions */}
-      <div className="grid grid-cols-3 gap-6">
+      <div className="grid grid-cols-4 gap-6">
         <Card className="bg-gradient-to-br from-blue-50 to-blue-100 border-blue-200 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={() => setActiveTab('leads')}>
           <CardContent className="p-6">
             <div className="flex items-center justify-between mb-4">
@@ -486,6 +506,18 @@ const MainContent = () => {
             <h3 className="text-lg font-bold text-indigo-900 mb-2">Organization Hub</h3>
             <p className="text-sm text-indigo-700 mb-4">Streamlined processes and automated workflows</p>
             <div className="text-2xl font-bold text-indigo-600">98.7% Follow-up Rate</div>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-gradient-to-br from-purple-50 to-purple-100 border-purple-200 hover:shadow-xl transition-all duration-300 cursor-pointer" onClick={() => setActiveTab('analytics')}>
+          <CardContent className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <BarChart3 className="h-8 w-8 text-purple-600" />
+              <Badge className="bg-purple-600 text-white">Executive</Badge>
+            </div>
+            <h3 className="text-lg font-bold text-purple-900 mb-2">Advanced Analytics</h3>
+            <p className="text-sm text-purple-700 mb-4">Strategic insights and competitive intelligence</p>
+            <div className="text-2xl font-bold text-purple-600">$18.7M Pipeline</div>
           </CardContent>
         </Card>
       </div>
