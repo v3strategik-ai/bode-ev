@@ -6,7 +6,6 @@ import { Badge } from './ui/badge';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from './ui/select';
 import RevenueChart from './charts/RevenueChart';
 import ConversionFunnelChart from './charts/ConversionFunnelChart';
-import TerritoryPerformanceChart from './charts/TerritoryPerformanceChart';
 import ForecastChart from './charts/ForecastChart';
 
 const ExecutiveDashboard = () => {
