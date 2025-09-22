@@ -5,7 +5,7 @@ import { Input } from './ui/input';
 
 const Header = ({ darkMode, setDarkMode }) => {
   return (
-    <header className="bg-gradient-to-br from-green-400 via-green-500 to-green-600 text-white px-6 py-5 backdrop-blur-xl border-b border-white/10 shadow-xl">
+    <header className="bg-white border-b border-gray-200 px-6 py-4 shadow-sm">
       <div className="flex items-center justify-between">
         {/* Left section - BODE EV Logo and title */}
         <div className="flex items-center space-x-6">
