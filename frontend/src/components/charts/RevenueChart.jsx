@@ -23,15 +23,24 @@ const RevenueChart = () => {
   }).join(' ');
 
   return (
-    <div className="w-full h-64">
+    <div className="w-full h-64 p-4">
       <svg width="100%" height="100%" viewBox={`0 0 ${chartWidth} ${chartHeight}`} className="overflow-visible">
-        {/* Grid lines */}
+        {/* Modern grid lines */}
         <defs>
-          <pattern id="grid" width="100" height="40" patternUnits="userSpaceOnUse">
-            <path d="M 100 0 L 0 0 0 40" fill="none" stroke="#f3f4f6" strokeWidth="1"/>
+          <pattern id="modernGrid" width="100" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 100 0 L 0 0 0 40" fill="none" stroke="#e2e8f0" strokeWidth="0.5" opacity="0.5"/>
           </pattern>
+          <linearGradient id="chartGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stopColor="#10b981" />
+            <stop offset="50%" stopColor="#06b6d4" />
+            <stop offset="100%" stopColor="#3b82f6" />
+          </linearGradient>
+          <linearGradient id="areaGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+            <stop offset="0%" stopColor="#10b981" stopOpacity="0.2" />
+            <stop offset="100%" stopColor="#3b82f6" stopOpacity="0.05" />
+          </linearGradient>
         </defs>
-        <rect width="100%" height="100%" fill="url(#grid)" />
+        <rect width="100%" height="100%" fill="url(#modernGrid)" />
 
         {/* Y-axis labels */}
         {[0, 20000, 40000, 60000, 80000].map((value, index) => (
