@@ -2,10 +2,10 @@ import React from 'react';
 
 const MarketSegmentsChart = () => {
   const segments = [
-    { label: 'Residential', value: 45, color: '#3b82f6' },
-    { label: 'Commercial', value: 30, color: '#10b981' },
-    { label: 'Industrial', value: 15, color: '#f59e0b' },
-    { label: 'Public', value: 10, color: '#8b5cf6' }
+    { label: 'Residential', value: 45, color: '#3b82f6', gradient: 'from-blue-500 to-blue-600' },
+    { label: 'Commercial', value: 30, color: '#10b981', gradient: 'from-emerald-500 to-green-500' },
+    { label: 'Industrial', value: 15, color: '#f59e0b', gradient: 'from-amber-500 to-orange-500' },
+    { label: 'Public', value: 10, color: '#8b5cf6', gradient: 'from-purple-500 to-indigo-500' }
   ];
 
   const total = segments.reduce((sum, segment) => sum + segment.value, 0);
