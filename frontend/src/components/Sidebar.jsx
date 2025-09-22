@@ -37,39 +37,53 @@ const Sidebar = () => {
   ];
 
   return (
-    <div className="w-64 bg-white border-r border-gray-200 min-h-screen">
+    <div className="w-72 bg-white/80 backdrop-blur-xl border-r border-gray-200/50 min-h-screen shadow-xl">
       {/* Header */}
-      <div className="p-4 border-b border-gray-200">
-        <div className="text-sm text-gray-500 mb-2">SystemIX AI Platform • Blockchain Secured</div>
-        <div className="font-semibold text-gray-900">CORE MODULES</div>
+      <div className="p-6 border-b border-gray-200/50 bg-gradient-to-br from-gray-50/50 to-white/30 backdrop-blur-sm">
+        <div className="text-xs text-gray-500 mb-3 font-medium uppercase tracking-wider">
+          SystemIX AI Platform • Blockchain Secured
+        </div>
+        <div className="font-bold text-gray-900 text-lg bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent">
+          CORE MODULES
+        </div>
       </div>
 
       {/* Menu items */}
-      <nav className="p-2">
+      <nav className="p-4 space-y-2">
         {menuItems.map((item, index) => {
           const Icon = item.icon;
           return (
             <div
               key={index}
-              className={`flex items-center justify-between px-3 py-2 mb-1 rounded-lg cursor-pointer transition-colors ${
+              className={`group flex items-center justify-between px-4 py-3.5 rounded-2xl cursor-pointer transition-all duration-300 ${
                 item.active 
-                  ? 'bg-blue-50 text-blue-700 border-l-4 border-blue-500' 
-                  : 'text-gray-700 hover:bg-gray-50'
+                  ? 'bg-gradient-to-r from-blue-50 to-indigo-50 text-blue-700 border-l-4 border-blue-500 shadow-lg shadow-blue-100/50 transform scale-[1.02]' 
+                  : 'text-gray-700 hover:bg-gradient-to-r hover:from-gray-50 hover:to-white hover:shadow-lg hover:shadow-gray-100/50 hover:transform hover:scale-[1.01]'
               }`}
             >
-              <div className="flex items-center space-x-3">
-                <Icon className="h-5 w-5" />
-                <span className="text-sm font-medium">{item.label}</span>
+              <div className="flex items-center space-x-4">
+                <div className={`p-2 rounded-xl transition-all duration-300 ${
+                  item.active
+                    ? 'bg-blue-100 text-blue-600 shadow-md'
+                    : 'bg-gray-100 text-gray-600 group-hover:bg-gray-200 group-hover:shadow-md'
+                }`}>
+                  <Icon className="h-5 w-5" />
+                </div>
+                <span className="text-sm font-semibold">{item.label}</span>
               </div>
               
               <div className="flex items-center space-x-2">
                 {item.count && (
-                  <span className="text-xs bg-gray-200 text-gray-600 px-2 py-1 rounded">
+                  <span className={`text-xs px-3 py-1 rounded-full font-medium transition-all duration-300 ${
+                    item.active
+                      ? 'bg-blue-100 text-blue-700'
+                      : 'bg-gray-200 text-gray-600 group-hover:bg-gray-300'
+                  }`}>
                     {item.count}
                   </span>
                 )}
                 {item.badge && (
-                  <span className="text-xs bg-green-100 text-green-700 px-2 py-1 rounded font-medium">
+                  <span className="text-xs bg-gradient-to-r from-emerald-400 to-green-500 text-white px-3 py-1 rounded-full font-bold shadow-lg shadow-emerald-200/50 animate-pulse">
                     {item.badge}
                   </span>
                 )}
