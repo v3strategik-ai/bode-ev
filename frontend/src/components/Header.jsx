@@ -81,20 +81,20 @@ const Header = ({ darkMode, setDarkMode }) => {
       </div>
 
       {/* Action buttons row */}
-      <div className="flex items-center space-x-4 mt-6">
-        <Button className="bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0">
+      <div className="flex items-center space-x-4 mt-6 pt-4 border-t border-gray-100">
+        <Button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0">
           <span className="mr-3 text-lg">+</span>
           Add Charging Station
         </Button>
-        <Button className="bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0">
+        <Button className="bg-green-500 hover:bg-green-600 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0">
           <span className="mr-3">⚡</span>
           Schedule Service
         </Button>
-        <Button className="bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0">
+        <Button className="bg-indigo-600 hover:bg-indigo-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0">
           <span className="mr-3">📊</span>
           Generate Report
         </Button>
-        <Button className="bg-gradient-to-r from-orange-500 to-red-500 hover:from-orange-600 hover:to-red-600 text-white px-6 py-3 rounded-xl shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-105 border-0">
+        <Button className="bg-gray-600 hover:bg-gray-700 text-white px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 border-0">
           <span className="mr-3">⚙️</span>
           System Settings
         </Button>
