@@ -28,7 +28,7 @@ const Sidebar = () => {
     { icon: FileText, label: 'Document Center', count: 10 },
     { icon: Users, label: 'Employee Hub', count: 11 },
     { icon: BarChart3, label: 'Analytics', count: 12 },
-    { icon: Cube, label: '3D Visualizer', badge: 'NEW' },
+    { icon: Box, label: '3D Visualizer', badge: 'NEW' },
     { icon: Leaf, label: 'Carbon Credits', badge: 'NEW' },
     { icon: Mic, label: 'Quantum Voice AI', badge: 'NEW' },
     { icon: Lock, label: 'Blockchain', count: 13 },
