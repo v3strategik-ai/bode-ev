@@ -30,17 +30,17 @@ const Header = ({ darkMode, setDarkMode }) => {
 
         {/* Center section - Stats */}
         <div className="flex items-center space-x-8 text-sm">
-          <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-            <div className="w-2.5 h-2.5 bg-green-300 rounded-full animate-pulse shadow-lg shadow-green-300/50"></div>
-            <span className="font-semibold">99.8% Platform Uptime</span>
+          <div className="flex items-center space-x-3 bg-gray-50 backdrop-blur-sm rounded-full px-4 py-2 border border-gray-200">
+            <div className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse shadow-lg shadow-green-300/30"></div>
+            <span className="font-semibold text-gray-700">99.8% Platform Uptime</span>
           </div>
-          <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-            <div className="w-2.5 h-2.5 bg-blue-300 rounded-full animate-pulse shadow-lg shadow-blue-300/50"></div>
-            <span className="font-semibold">77.3% Success Rate</span>
+          <div className="flex items-center space-x-3 bg-gray-50 backdrop-blur-sm rounded-full px-4 py-2 border border-gray-200">
+            <div className="w-2.5 h-2.5 bg-blue-500 rounded-full animate-pulse shadow-lg shadow-blue-300/30"></div>
+            <span className="font-semibold text-gray-700">77.3% Success Rate</span>
           </div>
-          <div className="flex items-center space-x-3 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 border border-white/20">
-            <div className="w-2.5 h-2.5 bg-yellow-300 rounded-full animate-pulse shadow-lg shadow-yellow-300/50"></div>
-            <span className="font-semibold">59M+ EV Miles</span>
+          <div className="flex items-center space-x-3 bg-gray-50 backdrop-blur-sm rounded-full px-4 py-2 border border-gray-200">
+            <div className="w-2.5 h-2.5 bg-amber-500 rounded-full animate-pulse shadow-lg shadow-amber-300/30"></div>
+            <span className="font-semibold text-gray-700">59M+ EV Miles</span>
           </div>
         </div>
 
