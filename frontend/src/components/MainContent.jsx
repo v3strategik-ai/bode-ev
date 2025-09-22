@@ -433,7 +433,7 @@ const MainContent = () => {
             <CardHeader className="pb-4">
               <CardTitle className="text-xl font-bold bg-gradient-to-r from-gray-900 to-gray-700 bg-clip-text text-transparent flex items-center">
                 <div className="w-2 h-8 bg-gradient-to-b from-green-500 to-blue-500 rounded-full mr-3"></div>
-                Revenue Pipeline
+                Sales Revenue Trend
               </CardTitle>
             </CardHeader>
             <CardContent>
