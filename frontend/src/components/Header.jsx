@@ -46,19 +46,19 @@ const Header = ({ darkMode, setDarkMode }) => {
 
         {/* Right section - Actions and time */}
         <div className="flex items-center space-x-6">
-          <div className="text-right text-sm bg-white/5 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/10">
-            <div className="font-mono text-xl font-bold bg-gradient-to-r from-white to-green-100 bg-clip-text text-transparent">
+          <div className="text-right text-sm bg-gray-50 backdrop-blur-sm rounded-xl px-4 py-2 border border-gray-200">
+            <div className="font-mono text-xl font-bold text-gray-900">
               03:03:34 AM
             </div>
-            <div className="opacity-75 text-xs">9/22/2025</div>
+            <div className="text-gray-600 text-xs">9/22/2025</div>
           </div>
           
           <div className="flex items-center space-x-3">
             <div className="relative group">
-              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-green-600 h-4 w-4" />
+              <Search className="absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400 h-4 w-4" />
               <Input
                 placeholder="Search charging networks"
-                className="pl-12 pr-4 py-3 bg-white/90 backdrop-blur-sm border-white/30 text-gray-900 placeholder-gray-500 w-72 rounded-xl shadow-lg focus:shadow-xl transition-all duration-300 focus:bg-white"
+                className="pl-12 pr-4 py-3 bg-gray-50 border-gray-200 text-gray-900 placeholder-gray-500 w-72 rounded-xl focus:border-green-500 focus:ring-green-500/20 transition-all duration-300"
               />
             </div>
             
@@ -66,15 +66,15 @@ const Header = ({ darkMode, setDarkMode }) => {
               variant="ghost"
               size="sm"
               onClick={() => setDarkMode(!darkMode)}
-              className="text-white hover:bg-white/20 rounded-xl px-4 py-2 backdrop-blur-sm border border-white/20 transition-all duration-300 hover:shadow-lg"
+              className="text-gray-700 hover:bg-gray-100 rounded-xl px-4 py-2 border border-gray-200 transition-all duration-300"
             >
               {darkMode ? <Sun className="h-4 w-4 mr-2" /> : <Moon className="h-4 w-4 mr-2" />}
               Dark
             </Button>
             
-            <div className="text-right bg-white/5 backdrop-blur-sm rounded-xl px-4 py-2 border border-white/10">
-              <div className="font-semibold text-sm">BODE EV Admin</div>
-              <div className="text-xs opacity-75">Network Administrator</div>
+            <div className="text-right bg-gray-50 backdrop-blur-sm rounded-xl px-4 py-2 border border-gray-200">
+              <div className="font-semibold text-sm text-gray-900">BODE EV Admin</div>
+              <div className="text-xs text-gray-600">Network Administrator</div>
             </div>
           </div>
         </div>
