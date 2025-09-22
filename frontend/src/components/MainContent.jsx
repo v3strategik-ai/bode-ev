@@ -22,7 +22,7 @@ const MainContent = () => {
       bgGradient: 'from-blue-50 to-blue-100'
     },
     {
-      title: 'Pending Quotes',
+      title: 'Sales Pipeline',
       value: '$2.4M',
       change: '18 quotes pending',
       icon: Calculator,
@@ -40,9 +40,9 @@ const MainContent = () => {
       bgGradient: 'from-indigo-50 to-purple-50'
     },
     {
-      title: 'Avg Quote Time',
-      value: '2.3hrs',
-      change: '45% faster delivery',
+      title: 'Units Sold',
+      value: '847',
+      change: '45% more than last month',
       icon: Activity,
       trend: 'up',
       gradient: 'from-orange-500 to-red-500',
