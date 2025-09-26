@@ -8,7 +8,7 @@ import {
   Info, 
   ExternalLink,
   Trash2,
-  MarkAsRead
+  CheckCheck
 } from 'lucide-react';
 
 // Toast Notification Component (for low/medium priority)
