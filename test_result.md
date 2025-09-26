@@ -179,7 +179,7 @@ test_plan:
   current_focus:
     - "Enhanced AI Lead Scoring System"
     - "Dynamic Pricing Recommendations"
-    - "AI Integration Backend APIs"
+    - "Seasonal Demand Forecasting"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
