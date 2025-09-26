@@ -70,7 +70,7 @@ const NotificationDemo = () => {
     return () => {
       timeouts.forEach(timeout => clearTimeout(timeout));
     };
-  }, [addNotification, businessNotifications]);
+  }, []); // Empty dependency array to run only once
 
   return null; // This component doesn't render anything
 };
