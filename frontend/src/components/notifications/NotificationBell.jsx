@@ -50,7 +50,7 @@ const NotificationCenter = ({ onClose }) => {
               onClick={markAllAsRead}
               className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded hover:bg-blue-200 flex items-center gap-1"
             >
-              <MarkAsRead size={12} />
+              <CheckCheck size={12} />
               Mark All Read
             </button>
             <button
