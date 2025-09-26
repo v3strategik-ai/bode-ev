@@ -14,6 +14,7 @@ import {
   Zap,
   Settings
 } from 'lucide-react';
+import { useNotifications } from '../../contexts/NotificationContext';
 
 const QuoteManagementSystem = () => {
   const [showPricingModal, setShowPricingModal] = useState(false);
