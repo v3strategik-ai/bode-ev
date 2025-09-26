@@ -89,6 +89,9 @@ const QuoteManagementSystem = () => {
       if (response.ok) {
         const result = await response.json();
         setPricingResult(result);
+        
+        // Add notification for AI pricing completion
+        addNotification(businessNotifications.aiPricingComplete(result));
       } else {
         throw new Error('Failed to get pricing recommendation');
       }
