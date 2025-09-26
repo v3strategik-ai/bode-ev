@@ -125,6 +125,280 @@ async def get_status_checks():
     status_checks = await db.status_checks.find().to_list(1000)
     return [StatusCheck(**status_check) for status_check in status_checks]
 
+# Initialize AI Chat
+def get_ai_chat(session_id: str = "ai_analytics"):
+    return LlmChat(
+        api_key=os.environ.get("EMERGENT_LLM_KEY"),
+        session_id=session_id,
+        system_message="You are an AI analytics expert for BODE EV, specializing in lead scoring, pricing optimization, demand forecasting, and customer lifetime value predictions for EV charging station sales."
+    ).with_model("openai", "gpt-4o")
+
+# AI Lead Scoring Endpoint
+@api_router.post("/ai/lead-scoring", response_model=LeadScoreResult)
+async def score_lead(lead_data: LeadData):
+    try:
+        chat = get_ai_chat("lead_scoring")
+        
+        prompt = f"""
+        Analyze this lead and provide a comprehensive scoring (0-100) for BODE EV charging station sales:
+        
+        Company: {lead_data.company_name}
+        Industry: {lead_data.industry}
+        Company Size: {lead_data.company_size}
+        Budget: ${lead_data.estimated_budget:,.2f}
+        Location: {lead_data.location}
+        Current EV Infrastructure: {lead_data.current_ev_infrastructure}
+        Timeline: {lead_data.timeline}
+        Lead Source: {lead_data.lead_source}
+        
+        Consider factors like:
+        - Budget alignment with our product range ($45,000-$250,000)
+        - Industry fit for EV adoption
+        - Company size and potential for fleet electrification
+        - Geographic location and EV market maturity
+        - Urgency of timeline
+        - Current infrastructure (upgrade potential)
+        
+        Respond in JSON format:
+        {{
+            "score": <0-100 integer>,
+            "priority": "<high/medium/low>",
+            "reasoning": "<detailed explanation>",
+            "recommended_actions": ["<action1>", "<action2>", "<action3>"],
+            "estimated_value": <potential deal value in dollars>
+        }}
+        """
+        
+        user_message = UserMessage(text=prompt)
+        response = await chat.send_message(user_message)
+        
+        # Parse AI response
+        ai_result = json.loads(response)
+        
+        result = LeadScoreResult(
+            lead_id=lead_data.id,
+            score=ai_result["score"],
+            priority=ai_result["priority"],
+            reasoning=ai_result["reasoning"],
+            recommended_actions=ai_result["recommended_actions"],
+            estimated_value=ai_result["estimated_value"]
+        )
+        
+        # Store lead data and scoring in database
+        lead_dict = lead_data.dict()
+        await db.leads.insert_one(lead_dict)
+        
+        score_dict = result.dict()
+        await db.lead_scores.insert_one(score_dict)
+        
+        return result
+        
+    except Exception as e:
+        logger.error(f"Lead scoring error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Lead scoring failed: {str(e)}")
+
+# Dynamic Pricing Endpoint
+@api_router.post("/ai/dynamic-pricing", response_model=PricingRecommendation)
+async def get_pricing_recommendation(pricing_request: PricingRequest):
+    try:
+        chat = get_ai_chat("pricing_optimization")
+        
+        prompt = f"""
+        Provide dynamic pricing recommendation for BODE EV charging station:
+        
+        Product ID: {pricing_request.product_id}
+        Customer Type: {pricing_request.customer_type}
+        Quantity: {pricing_request.quantity}
+        Location: {pricing_request.location}
+        Installation Complexity: {pricing_request.installation_complexity}
+        Timeline: {pricing_request.timeline}
+        Competitor Pricing: ${pricing_request.competitor_pricing or 'Unknown'}
+        
+        Base pricing ranges:
+        - FastCharge Pro 150kW: $45,000
+        - UltraCharge 250kW: $75,000
+        
+        Consider:
+        - Volume discounts (5+ units: 5%, 10+ units: 10%, 20+ units: 15%)
+        - Customer type premiums/discounts
+        - Geographic market conditions
+        - Installation complexity adjustments
+        - Competitive positioning
+        - Urgency/timeline factors
+        
+        Respond in JSON format:
+        {{
+            "base_price": <base price per unit>,
+            "recommended_price": <final recommended price per unit>,
+            "discount_percentage": <percentage discount applied>,
+            "pricing_strategy": "<strategy description>",
+            "confidence_level": <0.0-1.0>,
+            "reasoning": "<detailed explanation>"
+        }}
+        """
+        
+        user_message = UserMessage(text=prompt)
+        response = await chat.send_message(user_message)
+        
+        # Parse AI response
+        ai_result = json.loads(response)
+        
+        result = PricingRecommendation(**ai_result)
+        
+        # Store pricing request and recommendation
+        request_dict = pricing_request.dict()
+        request_dict["id"] = str(uuid.uuid4())
+        request_dict["created_at"] = datetime.now(timezone.utc)
+        await db.pricing_requests.insert_one(request_dict)
+        
+        recommendation_dict = result.dict()
+        recommendation_dict["request_id"] = request_dict["id"]
+        recommendation_dict["created_at"] = datetime.now(timezone.utc)
+        await db.pricing_recommendations.insert_one(recommendation_dict)
+        
+        return result
+        
+    except Exception as e:
+        logger.error(f"Pricing recommendation error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Pricing recommendation failed: {str(e)}")
+
+# Seasonal Demand Forecasting Endpoint
+@api_router.post("/ai/demand-forecast", response_model=List[DemandForecast])
+async def get_demand_forecast(forecast_request: ForecastRequest):
+    try:
+        chat = get_ai_chat("demand_forecasting")
+        
+        prompt = f"""
+        Generate seasonal demand forecast for BODE EV charging stations:
+        
+        Product Category: {forecast_request.product_category}
+        Region: {forecast_request.region}
+        Time Horizon: {forecast_request.time_horizon}
+        
+        Consider factors:
+        - EV adoption trends in the region
+        - Government incentives and policies
+        - Seasonal business patterns
+        - Infrastructure development plans
+        - Economic factors
+        - Competition landscape
+        
+        Generate monthly forecasts with confidence intervals.
+        
+        Respond in JSON format as an array:
+        [
+            {{
+                "period": "2025-10",
+                "predicted_demand": <units>,
+                "confidence_interval": {{"low": <units>, "high": <units>}},
+                "seasonal_factors": ["<factor1>", "<factor2>"],
+                "recommended_inventory": <units>
+            }},
+            ...
+        ]
+        """
+        
+        user_message = UserMessage(text=prompt)
+        response = await chat.send_message(user_message)
+        
+        # Parse AI response
+        ai_result = json.loads(response)
+        
+        results = [DemandForecast(**forecast) for forecast in ai_result]
+        
+        # Store forecast request and results
+        request_dict = forecast_request.dict()
+        request_dict["id"] = str(uuid.uuid4())
+        request_dict["created_at"] = datetime.now(timezone.utc)
+        await db.forecast_requests.insert_one(request_dict)
+        
+        for result in results:
+            forecast_dict = result.dict()
+            forecast_dict["request_id"] = request_dict["id"]
+            forecast_dict["created_at"] = datetime.now(timezone.utc)
+            await db.demand_forecasts.insert_one(forecast_dict)
+        
+        return results
+        
+    except Exception as e:
+        logger.error(f"Demand forecasting error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"Demand forecasting failed: {str(e)}")
+
+# Customer Lifetime Value Prediction Endpoint
+@api_router.post("/ai/clv-prediction", response_model=CLVPrediction)
+async def predict_customer_lifetime_value(customer_data: CustomerData):
+    try:
+        chat = get_ai_chat("clv_prediction")
+        
+        prompt = f"""
+        Predict Customer Lifetime Value for BODE EV customer:
+        
+        Customer ID: {customer_data.customer_id}
+        Acquisition Cost: ${customer_data.acquisition_cost:,.2f}
+        Monthly Revenue: ${customer_data.monthly_revenue:,.2f}
+        Customer Segment: {customer_data.customer_segment}
+        Tenure (months): {customer_data.tenure_months}
+        Support Tickets: {customer_data.support_tickets}
+        Expansion Purchases: {customer_data.expansion_purchases}
+        
+        Consider:
+        - Monthly revenue trends
+        - Customer segment characteristics
+        - Support engagement patterns
+        - Expansion purchase behavior
+        - Industry retention rates for EV infrastructure
+        - Typical customer lifecycle in B2B EV charging
+        
+        Respond in JSON format:
+        {{
+            "predicted_clv": <total CLV in dollars>,
+            "risk_score": <0.0-1.0 churn risk>,
+            "recommended_actions": ["<action1>", "<action2>"],
+            "value_drivers": ["<driver1>", "<driver2>"]
+        }}
+        """
+        
+        user_message = UserMessage(text=prompt)
+        response = await chat.send_message(user_message)
+        
+        # Parse AI response
+        ai_result = json.loads(response)
+        
+        result = CLVPrediction(
+            customer_id=customer_data.customer_id,
+            predicted_clv=ai_result["predicted_clv"],
+            risk_score=ai_result["risk_score"],
+            recommended_actions=ai_result["recommended_actions"],
+            value_drivers=ai_result["value_drivers"]
+        )
+        
+        # Store customer data and CLV prediction
+        customer_dict = customer_data.dict()
+        customer_dict["created_at"] = datetime.now(timezone.utc)
+        await db.customers.insert_one(customer_dict)
+        
+        prediction_dict = result.dict()
+        prediction_dict["created_at"] = datetime.now(timezone.utc)
+        await db.clv_predictions.insert_one(prediction_dict)
+        
+        return result
+        
+    except Exception as e:
+        logger.error(f"CLV prediction error: {str(e)}")
+        raise HTTPException(status_code=500, detail=f"CLV prediction failed: {str(e)}")
+
+# Get Lead Scores Endpoint
+@api_router.get("/ai/lead-scores", response_model=List[LeadScoreResult])
+async def get_lead_scores(limit: int = 50):
+    scores = await db.lead_scores.find().sort("score", -1).limit(limit).to_list(limit)
+    return [LeadScoreResult(**score) for score in scores]
+
+# Get Leads Endpoint
+@api_router.get("/leads", response_model=List[LeadData])
+async def get_leads(limit: int = 100):
+    leads = await db.leads.find().sort("created_at", -1).limit(limit).to_list(limit)
+    return [LeadData(**lead) for lead in leads]
+
 # Include the router in the main app
 app.include_router(api_router)
 
