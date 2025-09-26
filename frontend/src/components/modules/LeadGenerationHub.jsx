@@ -24,6 +24,9 @@ const LeadGenerationHub = () => {
   const [loading, setLoading] = useState(false);
   const [showAddLead, setShowAddLead] = useState(false);
   const [scoreLoading, setScoreLoading] = useState(false);
+  
+  // Get notification functions
+  const { addNotification, businessNotifications } = useNotifications();
 
   // Form state for new lead
   const [newLead, setNewLead] = useState({
