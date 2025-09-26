@@ -5,7 +5,7 @@ const NotificationDemo = () => {
   const { addNotification, businessNotifications } = useNotifications();
 
   useEffect(() => {
-    // Demo notifications to showcase the system
+    // Demo notifications to showcase the system - run only once
     const demoNotifications = [
       // High-priority lead notification (critical)
       () => addNotification(businessNotifications.highPriorityLead({
