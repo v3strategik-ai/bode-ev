@@ -72,6 +72,7 @@ const Dashboard = () => {
         </div>
       </div>
       <FloatingCopilot />
+      <NotificationDemo />
     </div>
   );
 };
