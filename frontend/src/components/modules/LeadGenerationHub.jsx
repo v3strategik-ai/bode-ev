@@ -16,6 +16,7 @@ import {
   AlertCircle,
   CheckCircle
 } from 'lucide-react';
+import { useNotifications } from '../../contexts/NotificationContext';
 
 const LeadGenerationHub = () => {
   const [leads, setLeads] = useState([]);
