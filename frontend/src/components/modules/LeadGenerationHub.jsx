@@ -95,6 +95,18 @@ const LeadGenerationHub = () => {
         const scoreResult = await response.json();
         console.log('Lead scored successfully:', scoreResult);
         
+        // Add notification for new lead
+        addNotification(businessNotifications.newLeadCaptured(newLead));
+        
+        // Add high-priority notification if score is high
+        if (scoreResult.score >= 80) {
+          addNotification(businessNotifications.highPriorityLead({
+            company_name: newLead.company_name,
+            score: scoreResult.score,
+            estimated_value: scoreResult.estimated_value
+          }));
+        }
+        
         // Refresh both leads and scores
         await fetchLeads();
         await fetchLeadScores();
