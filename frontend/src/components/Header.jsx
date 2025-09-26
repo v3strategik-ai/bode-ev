@@ -2,6 +2,7 @@ import React from 'react';
 import { Search, Moon, Sun } from 'lucide-react';
 import { Button } from './ui/button';
 import { Input } from './ui/input';
+import NotificationBell from './notifications/NotificationBell';
 
 const Header = ({ darkMode, setDarkMode, onModuleChange }) => {
   
