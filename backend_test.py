@@ -11,7 +11,7 @@ from datetime import datetime
 import uuid
 
 # Backend URL from environment
-BACKEND_URL = "https://smart-charge-crm.preview.emergentagent.com/api"
+BACKEND_URL = "https://evcrm-saas.preview.emergentagent.com/api"
 
 def test_api_endpoint(method, endpoint, data=None, expected_status=200):
     """Generic API testing function"""
