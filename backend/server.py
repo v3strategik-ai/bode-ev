@@ -32,10 +32,81 @@ api_router = APIRouter(prefix="/api")
 class StatusCheck(BaseModel):
     id: str = Field(default_factory=lambda: str(uuid.uuid4()))
     client_name: str
-    timestamp: datetime = Field(default_factory=datetime.utcnow)
+    timestamp: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
 
 class StatusCheckCreate(BaseModel):
     client_name: str
+
+# AI-powered Lead Scoring Models
+class LeadData(BaseModel):
+    id: str = Field(default_factory=lambda: str(uuid.uuid4()))
+    company_name: str
+    contact_email: str
+    contact_phone: Optional[str] = None
+    industry: str
+    company_size: str  # "1-10", "11-50", "51-200", "201-1000", "1000+"
+    estimated_budget: float
+    location: str
+    current_ev_infrastructure: str  # "none", "basic", "advanced"
+    timeline: str  # "immediate", "3-6 months", "6-12 months", "1+ years"
+    lead_source: str
+    created_at: datetime = Field(default_factory=lambda: datetime.now(timezone.utc))
+    
+class LeadScoreResult(BaseModel):
+    lead_id: str
+    score: int  # 0-100
+    priority: str  # "high", "medium", "low"
+    reasoning: str
+    recommended_actions: List[str]
+    estimated_value: float
+
+# Dynamic Pricing Models
+class PricingRequest(BaseModel):
+    product_id: str
+    customer_type: str  # "commercial", "residential", "government"
+    quantity: int
+    location: str
+    installation_complexity: str  # "simple", "moderate", "complex"
+    timeline: str
+    competitor_pricing: Optional[float] = None
+
+class PricingRecommendation(BaseModel):
+    base_price: float
+    recommended_price: float
+    discount_percentage: float
+    pricing_strategy: str
+    confidence_level: float
+    reasoning: str
+
+# Seasonal Forecasting Models
+class ForecastRequest(BaseModel):
+    product_category: str
+    region: str
+    time_horizon: str  # "3_months", "6_months", "12_months"
+
+class DemandForecast(BaseModel):
+    period: str
+    predicted_demand: int
+    confidence_interval: Dict[str, int]  # {"low": 80, "high": 120}
+    seasonal_factors: List[str]
+    recommended_inventory: int
+
+# Customer Lifetime Value Models
+class CustomerData(BaseModel):
+    customer_id: str
+    acquisition_cost: float
+    monthly_revenue: float
+    customer_segment: str
+    tenure_months: int
+    support_tickets: int
+    expansion_purchases: int
+
+class CLVPrediction(BaseModel):
+    customer_id: str
+    predicted_clv: float
+    risk_score: float  # 0-1 (churn risk)
+    recommended_actions: List[str]
+    value_drivers: List[str]
 
 # Add your routes to the router instead of directly to app
 @api_router.get("/")
