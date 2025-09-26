@@ -1,10 +1,14 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { useNotifications } from '../contexts/NotificationContext';
 
 const NotificationDemo = () => {
   const { addNotification, businessNotifications } = useNotifications();
+  const hasRunRef = useRef(false);
 
   useEffect(() => {
+    // Only run once per session to prevent notification spam
+    if (hasRunRef.current) return;
+    hasRunRef.current = true;
     // Demo notifications to showcase the system - run only once
     const demoNotifications = [
       // High-priority lead notification (critical)
