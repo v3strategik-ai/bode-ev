@@ -289,9 +289,9 @@ const NotificationSystem = () => {
 
   // Handle notification display based on priority
   useEffect(() => {
-    const criticalNotifications = notifications.filter(n => n.priority === 'critical' && !n.dismissed);
-    const highNotifications = notifications.filter(n => n.priority === 'high' && !n.dismissed);
-    const otherNotifications = notifications.filter(n => ['low', 'medium'].includes(n.priority) && !n.dismissed);
+    const criticalNotifications = notifications.filter(n => n.priority === 'critical');
+    const highNotifications = notifications.filter(n => n.priority === 'high');
+    const otherNotifications = notifications.filter(n => ['low', 'medium'].includes(n.priority));
 
     // Show only the most recent notification of each type
     const toShow = [];
