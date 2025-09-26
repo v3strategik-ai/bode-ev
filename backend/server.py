@@ -415,6 +415,25 @@ async def predict_customer_lifetime_value(customer_data: CustomerData):
             elif response_text.startswith('```'):
                 response_text = response_text.replace('```', '').strip()
             
+            # Handle case where there's extra text after JSON
+            # Find the JSON object boundaries
+            json_start = response_text.find('{')
+            if json_start != -1:
+                # Find the matching closing brace
+                brace_count = 0
+                json_end = json_start
+                for i, char in enumerate(response_text[json_start:], json_start):
+                    if char == '{':
+                        brace_count += 1
+                    elif char == '}':
+                        brace_count -= 1
+                        if brace_count == 0:
+                            json_end = i + 1
+                            break
+                
+                if json_end > json_start:
+                    response_text = response_text[json_start:json_end]
+            
             ai_result = json.loads(response_text)
         except json.JSONDecodeError as e:
             logger.error(f"JSON parsing failed for response: {response}")
