@@ -210,124 +210,12 @@ const MainContent = () => {
       );
     }
 
+    if (activeTab === 'leads') {
+      return <LeadGenerationHub />;
+    }
+
     if (activeTab === 'quotes') {
-      return (
-        <>
-          <div className="flex justify-between items-center mb-8">
-            <div>
-              <h2 className="text-3xl font-bold text-gray-900">Quote Management</h2>
-              <p className="text-gray-600 mt-2">Create, track, and manage EV charging installation quotes</p>
-            </div>
-            <div className="flex space-x-3">
-              <Button className="bg-green-600 hover:bg-green-700 text-white">
-                <Calculator className="h-4 w-4 mr-2" />
-                New Quote
-              </Button>
-              <Button variant="outline">Quote Templates</Button>
-            </div>
-          </div>
-
-          {/* Quote Tools */}
-          <div className="grid grid-cols-4 gap-6 mb-8">
-            <Card className="hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center">
-                  <Calculator className="h-5 w-5 mr-2 text-green-600" />Smart Calculator
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 mb-4">AI-powered pricing with real-time cost calculations</p>
-                <Button size="sm" className="w-full">Launch Calculator</Button>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center">
-                  <FileText className="h-5 w-5 mr-2 text-blue-600" />Quote Templates
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 mb-4">Pre-built templates for different charging scenarios</p>
-                <Button size="sm" variant="outline" className="w-full">Manage Templates</Button>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center">
-                  <TrendingUp className="h-5 w-5 mr-2 text-indigo-600" />Price Optimization
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 mb-4">Dynamic pricing based on market conditions</p>
-                <Button size="sm" variant="outline" className="w-full">View Analytics</Button>
-              </CardContent>
-            </Card>
-            <Card className="hover:shadow-lg transition-all duration-300">
-              <CardHeader>
-                <CardTitle className="text-lg flex items-center">
-                  <Calendar className="h-5 w-5 mr-2 text-purple-600" />Approval Workflow
-                </CardTitle>
-              </CardHeader>
-              <CardContent>
-                <p className="text-sm text-gray-600 mb-4">Automated approval process for large projects</p>
-                <Button size="sm" variant="outline" className="w-full">Configure Flow</Button>
-              </CardContent>
-            </Card>
-          </div>
-
-          {/* Pending Quotes */}
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="text-xl">Pending Quotes</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <div className="overflow-x-auto">
-                <table className="w-full">
-                  <thead>
-                    <tr className="border-b">
-                      <th className="text-left py-3 px-4 font-semibold">Project</th>
-                      <th className="text-left py-3 px-4 font-semibold">Client</th>
-                      <th className="text-left py-3 px-4 font-semibold">Value</th>
-                      <th className="text-left py-3 px-4 font-semibold">Stations</th>
-                      <th className="text-left py-3 px-4 font-semibold">Deadline</th>
-                      <th className="text-left py-3 px-4 font-semibold">Status</th>
-                      <th className="text-left py-3 px-4 font-semibold">Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {pendingQuotes.map((quote) => (
-                      <tr key={quote.id} className="border-b hover:bg-gray-50">
-                        <td className="py-4 px-4">
-                          <div className="font-semibold text-gray-900">{quote.project}</div>
-                        </td>
-                        <td className="py-4 px-4 text-gray-900">{quote.client}</td>
-                        <td className="py-4 px-4 font-semibold text-green-600">{quote.value}</td>
-                        <td className="py-4 px-4 text-gray-600">{quote.stations}</td>
-                        <td className="py-4 px-4 text-gray-600">{quote.deadline}</td>
-                        <td className="py-4 px-4">
-                          <Badge className={`${
-                            quote.status === 'In Review' ? 'bg-yellow-100 text-yellow-800' :
-                            quote.status === 'Pending Approval' ? 'bg-blue-100 text-blue-800' :
-                            'bg-green-100 text-green-800'
-                          }`}>
-                            {quote.status}
-                          </Badge>
-                        </td>
-                        <td className="py-4 px-4">
-                          <div className="flex space-x-2">
-                            <Button size="sm" variant="outline">Edit</Button>
-                            <Button size="sm" className="bg-blue-600">Send</Button>
-                          </div>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </CardContent>
-          </Card>
-        </>
-      );
+      return <QuoteManagementSystem />;
     }
 
     // Default dashboard view
