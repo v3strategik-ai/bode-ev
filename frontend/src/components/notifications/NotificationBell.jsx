@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Bell, X, AlertTriangle, Trash2, MarkAsRead, ExternalLink } from 'lucide-react';
+import { Bell, X, AlertTriangle, Trash2, CheckCheck, ExternalLink } from 'lucide-react';
 import { useNotifications } from '../../contexts/NotificationContext';
 
 const NotificationCenter = ({ onClose }) => {
