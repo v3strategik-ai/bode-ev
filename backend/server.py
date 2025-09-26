@@ -403,8 +403,22 @@ async def predict_customer_lifetime_value(customer_data: CustomerData):
         user_message = UserMessage(text=prompt)
         response = await chat.send_message(user_message)
         
-        # Parse AI response
-        ai_result = json.loads(response)
+        # Debug: Log the raw response
+        logger.info(f"AI CLV Response: {response}")
+        
+        # Parse AI response - handle potential JSON formatting issues
+        try:
+            # Try to extract JSON from response if it's wrapped in text
+            response_text = str(response).strip()
+            if response_text.startswith('```json'):
+                response_text = response_text.replace('```json', '').replace('```', '').strip()
+            elif response_text.startswith('```'):
+                response_text = response_text.replace('```', '').strip()
+            
+            ai_result = json.loads(response_text)
+        except json.JSONDecodeError as e:
+            logger.error(f"JSON parsing failed for response: {response}")
+            raise HTTPException(status_code=500, detail=f"Invalid AI response format: {str(e)}")
         
         result = CLVPrediction(
             customer_id=customer_data.customer_id,
