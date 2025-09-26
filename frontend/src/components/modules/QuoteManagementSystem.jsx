@@ -20,6 +20,9 @@ const QuoteManagementSystem = () => {
   const [showPricingModal, setShowPricingModal] = useState(false);
   const [pricingLoading, setPricingLoading] = useState(false);
   const [pricingResult, setPricingResult] = useState(null);
+  
+  // Get notification functions
+  const { addNotification, businessNotifications } = useNotifications();
 
   // Pricing request form state
   const [pricingRequest, setPricingRequest] = useState({
