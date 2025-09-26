@@ -3,6 +3,7 @@ import Header from '../components/Header';
 import Sidebar from '../components/Sidebar';
 import MainContent from '../components/MainContent';
 import FloatingCopilot from '../components/FloatingCopilot';
+import NotificationDemo from '../components/NotificationDemo';
 
 // Import all module components
 import ChargingStations from '../components/modules/ChargingStations';
