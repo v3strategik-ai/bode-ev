@@ -7,6 +7,8 @@ import { Badge } from './ui/badge';
 import RevenueChart from './charts/RevenueChart';
 import MarketSegmentsChart from './charts/MarketSegmentsChart';
 import ExecutiveDashboard from './ExecutiveDashboard';
+import LeadGenerationHub from './modules/LeadGenerationHub';
+import QuoteManagementSystem from './modules/QuoteManagementSystem';
 
 const MainContent = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
