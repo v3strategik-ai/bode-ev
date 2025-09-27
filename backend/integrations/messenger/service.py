@@ -4,8 +4,8 @@ from typing import List, Dict, Optional
 from datetime import datetime, timezone
 import json
 import logging
-from ...models.messenger import User, ChatRoom, Message, VideoCall, FileAttachment
-from ...auth.auth_handler import auth_handler
+from models.messenger import User, ChatRoom, Message, VideoCall, FileAttachment
+from auth.auth_handler import auth_handler
 
 logger = logging.getLogger(__name__)
 
