@@ -9,7 +9,10 @@ from models.messenger import (
     UserCreate, UserLogin, ChatRoomCreate, MessageCreate, MessageUpdate, 
     VideoCallCreate, User, ChatRoom, Message, VideoCall
 )
-from integrations.messenger.service import messenger_service
+from integrations.messenger.service import MessengerService
+
+# This will be set by the main application
+messenger_service: MessengerService = None
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/messenger", tags=["messenger"])
