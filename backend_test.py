@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Backend API Testing for BODE EV Platform
-Tests both AI CRM features and Team Messenger Phase 1 implementation
+Tests AI CRM features, Team Messenger Phase 1, and File Sharing System (AWS S3 Integration Phase 3)
 """
 
 import requests
