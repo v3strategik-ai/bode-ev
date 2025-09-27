@@ -12,6 +12,10 @@ from datetime import datetime, timezone
 import json
 from emergentintegrations.llm.chat import LlmChat, UserMessage
 
+# Import team messenger components
+from integrations.messenger.router import router as messenger_router
+from integrations.messenger.service import MessengerService
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
