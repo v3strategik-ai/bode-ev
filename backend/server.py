@@ -490,9 +490,17 @@ messenger_service_instance = MessengerService(db)
 import integrations.messenger.router
 integrations.messenger.router.messenger_service = messenger_service_instance
 
+# Initialize S3 service
+s3_service_instance = S3Service(db)
+
+# Update the global s3_service import
+import integrations.aws.service
+integrations.aws.service.s3_service = s3_service_instance
+
 # Include sub-routers in API router FIRST
 api_router.include_router(messenger_router)
 api_router.include_router(messenger_test_router)
+api_router.include_router(s3_router)
 
 # Then include the main API router in the app
 app.include_router(api_router)
