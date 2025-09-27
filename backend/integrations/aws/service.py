@@ -181,7 +181,7 @@ class S3Service:
         """Download file from S3 bucket or mock storage"""
         try:
             # Check if user has access to file (simple check - implement proper authorization)
-            if not filename.startswith(f"users/{user_id}/") and not filename.startswith("public/"):
+            if not f"users/{user_id}/" in filename and not filename.startswith("public/"):
                 raise HTTPException(status_code=403, detail="Access denied")
             
             if self.mock_mode:
