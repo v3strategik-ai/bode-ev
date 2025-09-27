@@ -353,10 +353,18 @@ def test_messenger_user_login():
     """Test user login and JWT token generation"""
     print("\n🔐 Testing Messenger User Login...")
     
-    login_data = {
-        "email": "test@bodeev.com",
-        "password": "123"  # Use the same short password from registration
-    }
+    # Use the credentials from registration if available
+    if 'test_email' in globals() and 'test_password' in globals():
+        login_data = {
+            "email": test_email,
+            "password": test_password
+        }
+    else:
+        # Fallback to default credentials
+        login_data = {
+            "email": "test@bodeev.com",
+            "password": "123"
+        }
     
     result = test_messenger_api_endpoint("POST", "/messenger/login", login_data)
     if result:
