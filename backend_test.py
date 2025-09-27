@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
-Backend API Testing for BODE EV CRM AI Features
-Tests all AI-powered endpoints with realistic EV charging industry data
+Backend API Testing for BODE EV Platform
+Tests both AI CRM features and Team Messenger Phase 1 implementation
 """
 
 import requests
@@ -12,6 +12,11 @@ import uuid
 
 # Backend URL from environment
 BACKEND_URL = "https://evcrm-saas.preview.emergentagent.com/api"
+
+# Global variables for messenger testing
+access_token = ""
+user_id = ""
+room_id = ""
 
 def test_api_endpoint(method, endpoint, data=None, expected_status=200):
     """Generic API testing function"""
