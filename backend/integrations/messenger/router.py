@@ -4,12 +4,12 @@ from typing import List, Dict, Optional
 import json
 import logging
 from datetime import datetime
-from ...auth.auth_bearer import jwt_bearer, auth_handler
-from ...models.messenger import (
+from auth.auth_bearer import jwt_bearer, auth_handler
+from models.messenger import (
     UserCreate, UserLogin, ChatRoomCreate, MessageCreate, MessageUpdate, 
     VideoCallCreate, User, ChatRoom, Message, VideoCall
 )
-from .service import messenger_service
+from integrations.messenger.service import messenger_service
 
 logger = logging.getLogger(__name__)
 router = APIRouter(prefix="/messenger", tags=["messenger"])
