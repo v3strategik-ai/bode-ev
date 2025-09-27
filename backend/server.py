@@ -15,6 +15,7 @@ from emergentintegrations.llm.chat import LlmChat, UserMessage
 # Import team messenger components
 from integrations.messenger.router import router as messenger_router
 from integrations.messenger.service import MessengerService
+from integrations.messenger.test_client import test_router as messenger_test_router
 
 
 ROOT_DIR = Path(__file__).parent
