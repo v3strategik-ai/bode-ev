@@ -20,6 +20,7 @@ from integrations.messenger.test_client import test_router as messenger_test_rou
 # Import AWS S3 components
 from integrations.aws.router import router as s3_router
 from integrations.aws.service import S3Service
+from integrations.aws.test_client import test_router as files_test_router
 
 
 ROOT_DIR = Path(__file__).parent
