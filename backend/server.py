@@ -17,6 +17,10 @@ from integrations.messenger.router import router as messenger_router
 from integrations.messenger.service import MessengerService
 from integrations.messenger.test_client import test_router as messenger_test_router
 
+# Import AWS S3 components
+from integrations.aws.router import router as s3_router
+from integrations.aws.service import S3Service
+
 
 ROOT_DIR = Path(__file__).parent
 load_dotenv(ROOT_DIR / '.env')
