@@ -478,8 +478,16 @@ async def get_leads(limit: int = 100):
     leads = await db.leads.find().sort("created_at", -1).limit(limit).to_list(limit)
     return [LeadData(**lead) for lead in leads]
 
-# Include the router in the main app
+# Initialize messenger service
+messenger_service_instance = MessengerService(db)
+
+# Update the global messenger_service import
+import integrations.messenger.service
+integrations.messenger.service.messenger_service = messenger_service_instance
+
+# Include routers in the main app
 app.include_router(api_router)
+api_router.include_router(messenger_router)
 
 app.add_middleware(
     CORSMiddleware,
