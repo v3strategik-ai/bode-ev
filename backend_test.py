@@ -346,7 +346,7 @@ def test_messenger_user_login():
     
     login_data = {
         "email": "test@bodeev.com",
-        "password": "test123"
+        "password": "123"  # Use the same short password from registration
     }
     
     result = test_messenger_api_endpoint("POST", "/messenger/login", login_data)
