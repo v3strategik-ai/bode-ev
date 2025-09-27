@@ -483,8 +483,8 @@ async def get_leads(limit: int = 100):
 messenger_service_instance = MessengerService(db)
 
 # Update the global messenger_service import
-import integrations.messenger.service
-integrations.messenger.service.messenger_service = messenger_service_instance
+import integrations.messenger.router
+integrations.messenger.router.messenger_service = messenger_service_instance
 
 # Include routers in the main app
 app.include_router(api_router)
