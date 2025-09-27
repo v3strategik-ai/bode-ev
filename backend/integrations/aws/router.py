@@ -4,9 +4,14 @@ from pydantic import BaseModel
 from typing import List, Optional
 import io
 from auth.auth_bearer import jwt_bearer
-from integrations.aws.service import s3_service
+from integrations.aws import service
+from datetime import datetime
 
 router = APIRouter(prefix="/files", tags=["files"])
+
+def get_s3_service():
+    """Get the S3 service instance"""
+    return service.s3_service
 
 class PresignedUrlRequest(BaseModel):
     filename: str
@@ -44,6 +49,7 @@ async def upload_file(
     if not file.filename:
         raise HTTPException(status_code=400, detail="No file selected")
     
+    s3_service = get_s3_service()
     result = await s3_service.upload_file(
         file=file,
         user_id=user_id,
@@ -79,6 +85,7 @@ async def upload_multiple_files(
     if len(files) > 10:
         raise HTTPException(status_code=400, detail="Maximum 10 files allowed")
     
+    s3_service = get_s3_service()
     results = []
     for file in files:
         try:
@@ -127,6 +134,7 @@ async def download_file(
     user_id: str = Depends(jwt_bearer)
 ):
     """Download file from cloud storage"""
+    s3_service = get_s3_service()
     file_data = await s3_service.download_file(filename, user_id)
     
     # Get original filename from metadata
@@ -144,6 +152,7 @@ async def delete_file(
     user_id: str = Depends(jwt_bearer)
 ):
     """Delete file from cloud storage"""
+    s3_service = get_s3_service()
     result = await s3_service.delete_file(filename, user_id)
     
     # Also remove from message attachments
@@ -161,6 +170,7 @@ async def list_files(
     user_id: str = Depends(jwt_bearer)
 ):
     """List user files"""
+    s3_service = get_s3_service()
     files = await s3_service.list_files(user_id, folder, limit)
     return {"files": files}
 
@@ -170,6 +180,7 @@ async def get_room_attachments(
     user_id: str = Depends(jwt_bearer)
 ):
     """Get all file attachments for a room"""
+    s3_service = get_s3_service()
     # Verify user is in room (simplified check)
     room = await s3_service.db.rooms.find_one({"id": room_id, "members": user_id})
     if not room:
@@ -201,6 +212,7 @@ async def generate_presigned_url(
     if not request.filename.startswith(f"users/{user_id}/"):
         request.filename = f"users/{user_id}/{request.filename}"
     
+    s3_service = get_s3_service()
     url = s3_service.generate_presigned_url(
         filename=request.filename,
         expiration=request.expiration,
@@ -220,6 +232,7 @@ async def get_file_info(
         if not filename.startswith(f"users/{user_id}/") and not filename.startswith("public/"):
             raise HTTPException(status_code=403, detail="Access denied")
         
+        s3_service = get_s3_service()
         # First try to get from database
         file_doc = await s3_service.db.file_attachments.find_one({"filename": filename})
         if file_doc:
@@ -255,6 +268,3 @@ async def get_file_info(
         
     except Exception as e:
         raise HTTPException(status_code=404, detail="File not found")
-
-# Add missing import
-from datetime import datetime
