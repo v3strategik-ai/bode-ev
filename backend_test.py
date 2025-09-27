@@ -309,12 +309,12 @@ def test_messenger_user_registration():
     """Test user registration with proper password (shortened to avoid bcrypt 72-byte limit)"""
     print("\n👤 Testing Messenger User Registration...")
     
-    # Test data from review request
+    # Test data from review request with shortened password
     user_data = {
         "email": "test@bodeev.com",
         "username": "testuser",
         "full_name": "Test User",
-        "password": "test123"  # Shortened password to avoid bcrypt limit
+        "password": "test123"  # Shortened password to avoid bcrypt 72-byte limit
     }
     
     result = test_messenger_api_endpoint("POST", "/messenger/register", user_data)
