@@ -309,11 +309,15 @@ def test_messenger_user_registration():
     """Test user registration with proper password (shortened to avoid bcrypt 72-byte limit)"""
     print("\n👤 Testing Messenger User Registration...")
     
+    # Use a unique email with timestamp to avoid conflicts
+    import time
+    timestamp = str(int(time.time()))
+    
     # Test data from review request with shortened password
     user_data = {
-        "email": "test@bodeev.com",
-        "username": "testuser",
-        "full_name": "Test User",
+        "email": f"testuser{timestamp}@bodeev.com",
+        "username": f"testuser{timestamp}",
+        "full_name": "Test User File Sharing",
         "password": "123"  # Very short password to avoid any bcrypt issues
     }
     
@@ -333,14 +337,16 @@ def test_messenger_user_registration():
             print(f"❌ Missing required fields: {missing_fields}")
             return False
             
-        # Store user_id for later tests
-        global user_id
+        # Store user_id and credentials for later tests
+        global user_id, test_email, test_password
         user_id = result.get('id')
+        test_email = user_data['email']
+        test_password = user_data['password']
         
         return True
     else:
         # If user already exists, that's actually fine for testing
-        print("   ⚠️ User already exists - proceeding with login test")
+        print("   ⚠️ User creation failed - will try with existing credentials")
         return True  # Return True so we can proceed to login
 
 def test_messenger_user_login():
