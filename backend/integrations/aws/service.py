@@ -224,7 +224,7 @@ class S3Service:
         """Delete file from S3 bucket or mock storage"""
         try:
             # Check if user has access to file
-            if not filename.startswith(f"users/{user_id}/"):
+            if not f"users/{user_id}/" in filename:
                 raise HTTPException(status_code=403, detail="Access denied")
             
             if self.mock_mode:
