@@ -707,7 +707,7 @@ def test_messenger_database_integration():
 
 def main():
     """Run all backend API tests"""
-    print("🚀 Starting BODE EV CRM Backend AI API Tests")
+    print("🚀 Starting BODE EV Platform Backend API Tests")
     print(f"   Backend URL: {BACKEND_URL}")
     print("=" * 60)
     
@@ -715,13 +715,26 @@ def main():
     
     # Run all tests
     tests = [
+        # AI CRM Tests
         ("Basic Connectivity", test_basic_connectivity),
         ("AI Lead Scoring", test_ai_lead_scoring),
         ("Dynamic Pricing", test_dynamic_pricing),
         ("Demand Forecasting", test_demand_forecasting),
         ("CLV Prediction", test_clv_prediction),
         ("Data Retrieval", test_data_retrieval_apis),
-        ("Error Handling", test_error_handling)
+        ("Error Handling", test_error_handling),
+        
+        # Team Messenger Phase 1 Tests
+        ("Messenger User Registration", test_messenger_user_registration),
+        ("Messenger User Login", test_messenger_user_login),
+        ("Messenger Protected Endpoints", test_messenger_protected_endpoints),
+        ("Messenger Room Creation", test_messenger_room_creation),
+        ("Messenger Room Management", test_messenger_room_management),
+        ("Messenger Send Messages", test_messenger_send_messages),
+        ("Messenger Retrieve Messages", test_messenger_retrieve_messages),
+        ("Messenger Message Operations", test_messenger_message_operations),
+        ("Messenger Video Calls", test_messenger_video_calls),
+        ("Messenger Database Integration", test_messenger_database_integration)
     ]
     
     for test_name, test_func in tests:
@@ -753,7 +766,7 @@ def main():
     print(f"Failed: {failed}")
     
     if failed == 0:
-        print("\n🎉 All tests passed! AI backend APIs are working correctly.")
+        print("\n🎉 All tests passed! BODE EV Platform backend APIs are working correctly.")
         return True
     else:
         print(f"\n⚠️  {failed} test(s) failed. Please check the issues above.")
