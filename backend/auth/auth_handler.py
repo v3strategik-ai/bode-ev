@@ -34,7 +34,10 @@ class AuthHandler:
     
     def hash_password(self, password: str) -> str:
         """Hash password using bcrypt"""
-        return self.pwd_context.hash(password)
+        # Truncate password to 72 bytes to avoid bcrypt limit
+        password_bytes = password.encode('utf-8')[:72]
+        password_truncated = password_bytes.decode('utf-8', errors='ignore')
+        return self.pwd_context.hash(password_truncated)
     
     def verify_password(self, password: str, hashed: str) -> bool:
         """Verify password against hash"""
