@@ -24,11 +24,17 @@ class MessengerService:
                 raise HTTPException(status_code=400, detail="User already exists")
             
             # Hash password
-            user_data["password"] = auth_handler.hash_password(user_data["password"])
+            hashed_password = auth_handler.hash_password(user_data["password"])
             
-            # Create user
-            user = User(**user_data)
-            await self.db.users.insert_one(user.dict())
+            # Create user object without password for response
+            user_data_clean = {k: v for k, v in user_data.items() if k != "password"}
+            user = User(**user_data_clean)
+            
+            # Prepare data for database (include password)
+            db_data = user.dict()
+            db_data["password"] = hashed_password
+            
+            await self.db.users.insert_one(db_data)
             
             return user
         except Exception as e:
