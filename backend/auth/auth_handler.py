@@ -4,6 +4,7 @@ from datetime import datetime, timedelta
 from fastapi import HTTPException, status
 from passlib.context import CryptContext
 import uuid
+import bcrypt
 
 class AuthHandler:
     def __init__(self):
@@ -33,20 +34,33 @@ class AuthHandler:
             raise HTTPException(status_code=401, detail="Invalid token")
     
     def hash_password(self, password: str) -> str:
-        """Hash password using bcrypt"""
-        # Ensure password is within bcrypt 72-byte limit
-        if len(password.encode('utf-8')) > 72:
-            password = password[:72]
+        """Hash password using bcrypt directly"""
         try:
-            return self.pwd_context.hash(password)
+            # Use bcrypt directly to avoid passlib issues
+            password_bytes = password.encode('utf-8')
+            # Ensure password is within bcrypt limit
+            if len(password_bytes) > 72:
+                password_bytes = password_bytes[:72]
+            salt = bcrypt.gensalt()
+            hashed = bcrypt.hashpw(password_bytes, salt)
+            return hashed.decode('utf-8')
         except Exception as e:
-            # Fallback: use a simple truncation
+            # Fallback to passlib with truncated password
             password = password[:50]  # Conservative limit
             return self.pwd_context.hash(password)
     
     def verify_password(self, password: str, hashed: str) -> bool:
         """Verify password against hash"""
-        return self.pwd_context.verify(password, hashed)
+        try:
+            # Try bcrypt directly first
+            password_bytes = password.encode('utf-8')
+            if len(password_bytes) > 72:
+                password_bytes = password_bytes[:72]
+            hashed_bytes = hashed.encode('utf-8')
+            return bcrypt.checkpw(password_bytes, hashed_bytes)
+        except:
+            # Fallback to passlib
+            return self.pwd_context.verify(password, hashed)
     
     def generate_user_id(self) -> str:
         """Generate unique user ID"""
