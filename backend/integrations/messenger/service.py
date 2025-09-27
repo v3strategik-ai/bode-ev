@@ -42,9 +42,13 @@ class MessengerService:
             if not user_doc:
                 return None
             
-            user = User(**user_doc)
+            # Verify password using the stored hash from database
             if not auth_handler.verify_password(password, user_doc["password"]):
                 return None
+            
+            # Create User object without password field
+            user_data = {k: v for k, v in user_doc.items() if k != "password" and k != "_id"}
+            user = User(**user_data)
             
             # Update last seen
             await self.db.users.update_one(
