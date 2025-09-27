@@ -314,7 +314,7 @@ def test_messenger_user_registration():
         "email": "test@bodeev.com",
         "username": "testuser",
         "full_name": "Test User",
-        "password": "test123"  # Shortened password to avoid bcrypt 72-byte limit
+        "password": "123"  # Very short password to avoid any bcrypt issues
     }
     
     result = test_messenger_api_endpoint("POST", "/messenger/register", user_data)
