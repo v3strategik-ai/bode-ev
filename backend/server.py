@@ -489,6 +489,7 @@ integrations.messenger.service.messenger_service = messenger_service_instance
 # Include routers in the main app
 app.include_router(api_router)
 api_router.include_router(messenger_router)
+api_router.include_router(messenger_test_router)
 
 app.add_middleware(
     CORSMiddleware,
