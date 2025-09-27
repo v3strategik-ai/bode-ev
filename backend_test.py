@@ -734,7 +734,22 @@ def main():
         ("Messenger Retrieve Messages", test_messenger_retrieve_messages),
         ("Messenger Message Operations", test_messenger_message_operations),
         ("Messenger Video Calls", test_messenger_video_calls),
-        ("Messenger Database Integration", test_messenger_database_integration)
+        ("Messenger Database Integration", test_messenger_database_integration),
+        
+        # File Sharing System Tests (AWS S3 Integration Phase 3)
+        ("File Upload Single", test_file_upload_single),
+        ("File Upload Multiple", test_file_upload_multiple),
+        ("File Upload with Room Association", test_file_upload_with_room_association),
+        ("File Validation", test_file_validation),
+        ("File Listing", test_file_listing),
+        ("File Download", test_file_download),
+        ("File Info Retrieval", test_file_info),
+        ("Presigned URL Generation", test_presigned_url_generation),
+        ("Room Attachments", test_room_attachments),
+        ("File Access Control", test_file_access_control),
+        ("S3 Integration Status", test_s3_integration_status),
+        ("Database Integration", test_database_integration),
+        ("File Deletion", test_file_deletion)
     ]
     
     for test_name, test_func in tests:
