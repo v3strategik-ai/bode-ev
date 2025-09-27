@@ -18,6 +18,8 @@ access_token = ""
 user_id = ""
 room_id = ""
 message_id = ""
+test_email = ""
+test_password = ""
 
 def test_api_endpoint(method, endpoint, data=None, expected_status=200):
     """Generic API testing function"""
