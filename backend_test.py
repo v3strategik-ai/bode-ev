@@ -17,6 +17,7 @@ BACKEND_URL = "https://evcrm-saas.preview.emergentagent.com/api"
 access_token = ""
 user_id = ""
 room_id = ""
+message_id = ""
 
 def test_api_endpoint(method, endpoint, data=None, expected_status=200):
     """Generic API testing function"""
