@@ -40,10 +40,19 @@ class MessengerService:
         try:
             user_doc = await self.db.users.find_one({"email": email})
             if not user_doc:
+                logger.info(f"User not found: {email}")
+                return None
+            
+            logger.info(f"User found: {email}, doc keys: {list(user_doc.keys())}")
+            
+            # Check if password field exists
+            if "password" not in user_doc:
+                logger.error(f"Password field missing for user: {email}")
                 return None
             
             # Verify password using the stored hash from database
             if not auth_handler.verify_password(password, user_doc["password"]):
+                logger.info(f"Password verification failed for user: {email}")
                 return None
             
             # Create User object without password field
@@ -56,6 +65,7 @@ class MessengerService:
                 {"$set": {"last_seen": datetime.now(timezone.utc), "status": "online"}}
             )
             
+            logger.info(f"Authentication successful for user: {email}")
             return user
         except Exception as e:
             logger.error(f"Authentication error: {str(e)}")
