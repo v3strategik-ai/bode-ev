@@ -229,7 +229,7 @@ async def get_file_info(
     """Get file information without downloading"""
     try:
         # Check if user has access to file
-        if not filename.startswith(f"users/{user_id}/") and not filename.startswith("public/"):
+        if not f"users/{user_id}/" in filename and not filename.startswith("public/"):
             raise HTTPException(status_code=403, detail="Access denied")
         
         s3_service = get_s3_service()
