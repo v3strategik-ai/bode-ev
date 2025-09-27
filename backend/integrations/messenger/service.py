@@ -167,6 +167,15 @@ class MessengerService:
             
             await self.db.messages.insert_one(message.dict())
             
+            # If message has file attachments, update them with message ID
+            if message.attachments:
+                for attachment in message.attachments:
+                    if attachment.get("file_id"):
+                        await self.db.message_attachments.update_one(
+                            {"id": attachment["file_id"]},
+                            {"$set": {"message_id": message.id}}
+                        )
+            
             # Notify room members (implement WebSocket broadcasting later)
             await self.broadcast_to_room(message.room_id, {
                 "type": "new_message",
