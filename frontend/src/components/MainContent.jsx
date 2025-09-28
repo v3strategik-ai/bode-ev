@@ -88,6 +88,10 @@ const MainContent = () => {
       return <QuoteManagementSystem />;
     }
 
+    if (activeTab === 'messenger') {
+      return <TeamMessenger />;
+    }
+
     // Default dashboard view
     return (
       <>
