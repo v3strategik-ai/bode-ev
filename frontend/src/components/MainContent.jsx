@@ -269,6 +269,17 @@ const MainContent = () => {
         >
           Quote Management
         </button>
+        <button
+          onClick={() => setActiveTab('messenger')}
+          className={`px-6 py-2 rounded-lg font-medium transition-all duration-300 ${
+            activeTab === 'messenger' 
+              ? 'bg-white text-blue-600 shadow-md' 
+              : 'text-gray-600 hover:text-gray-900'
+          }`}
+        >
+          <MessageCircle className="h-4 w-4 mr-2 inline" />
+          Team Messenger
+        </button>
       </div>
 
       {/* Dynamic Content Based on Active Tab */}
