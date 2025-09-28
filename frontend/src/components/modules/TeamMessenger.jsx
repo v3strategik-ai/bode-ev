@@ -26,6 +26,7 @@ const TeamMessenger = () => {
   const { user, isAuthenticated, logout, loading } = useAuth();
   const { isConnected, messages } = useWebSocket();
   const [activeTab, setActiveTab] = useState('chat');
+  const [selectedRoom, setSelectedRoom] = useState(null);
 
   // If not authenticated, show login form
   if (!isAuthenticated) {
