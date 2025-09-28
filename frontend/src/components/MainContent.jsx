@@ -9,6 +9,7 @@ import MarketSegmentsChart from './charts/MarketSegmentsChart';
 import ExecutiveDashboard from './ExecutiveDashboard';
 import LeadGenerationHub from './modules/LeadGenerationHub';
 import QuoteManagementSystem from './modules/QuoteManagementSystem';
+import TeamMessenger from './modules/TeamMessenger';
 
 const MainContent = () => {
   const [activeTab, setActiveTab] = useState('dashboard');
