@@ -129,19 +129,30 @@ const TeamMessenger = () => {
             </TabsList>
 
             <TabsContent value="chat" className="mt-6">
-              <ChatInterface />
+              <ChatInterface 
+                selectedRoom={selectedRoom} 
+                onRoomSelect={setSelectedRoom}
+              />
             </TabsContent>
 
             <TabsContent value="rooms" className="mt-6">
-              <RoomsInterface />
+              <RoomsInterface 
+                selectedRoom={selectedRoom}
+                onRoomSelect={setSelectedRoom}
+              />
             </TabsContent>
 
             <TabsContent value="calls" className="mt-6">
-              <CallsInterface />
+              <CallsInterface 
+                selectedRoom={selectedRoom}
+                onRoomSelect={setSelectedRoom}
+              />
             </TabsContent>
 
             <TabsContent value="files" className="mt-6">
-              <FilesInterface />
+              <FilesInterface 
+                selectedRoom={selectedRoom}
+              />
             </TabsContent>
           </Tabs>
         </CardContent>
@@ -149,95 +160,5 @@ const TeamMessenger = () => {
     </div>
   );
 };
-
-// Placeholder components for different tabs
-const ChatInterface = () => (
-  <Card>
-    <CardContent className="p-6">
-      <div className="text-center text-gray-500">
-        <MessageCircle className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-        <h3 className="text-lg font-semibold mb-2">Chat Interface</h3>
-        <p className="text-sm">Real-time messaging interface coming soon...</p>
-        <div className="mt-4 space-y-2">
-          <div className="text-xs text-left bg-gray-50 p-3 rounded">
-            <strong>Features Ready:</strong>
-            <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>WebSocket connection established ✅</li>
-              <li>User authentication working ✅</li>
-              <li>Real-time message handling ✅</li>
-              <li>Typing indicators ✅</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </CardContent>
-  </Card>
-);
-
-const RoomsInterface = () => (
-  <Card>
-    <CardContent className="p-6">
-      <div className="text-center text-gray-500">
-        <Users className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-        <h3 className="text-lg font-semibold mb-2">Team Rooms</h3>
-        <p className="text-sm">Create and manage team chat rooms...</p>
-        <div className="mt-4">
-          <Button variant="outline" size="sm">
-            <Plus className="h-4 w-4 mr-2" />
-            Create Room
-          </Button>
-        </div>
-      </div>
-    </CardContent>
-  </Card>
-);
-
-const CallsInterface = () => (
-  <Card>
-    <CardContent className="p-6">
-      <div className="text-center text-gray-500">
-        <Phone className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-        <h3 className="text-lg font-semibold mb-2">Video & Audio Calls</h3>
-        <p className="text-sm">Start video calls and screen sharing...</p>
-        <div className="mt-4 space-x-2">
-          <Button variant="outline" size="sm">
-            <Phone className="h-4 w-4 mr-2" />
-            Audio Call
-          </Button>
-          <Button variant="outline" size="sm">
-            Video Call
-          </Button>
-        </div>
-      </div>
-    </CardContent>
-  </Card>
-);
-
-const FilesInterface = () => (
-  <Card>
-    <CardContent className="p-6">
-      <div className="text-center text-gray-500">
-        <FileText className="h-12 w-12 mx-auto mb-4 text-gray-300" />
-        <h3 className="text-lg font-semibold mb-2">File Sharing</h3>
-        <p className="text-sm">Upload, share, and manage team files...</p>
-        <div className="mt-4 space-y-2">
-          <Button variant="outline" size="sm" className="w-full">
-            <Plus className="h-4 w-4 mr-2" />
-            Upload Files
-          </Button>
-          <div className="text-xs text-left bg-gray-50 p-3 rounded">
-            <strong>AWS S3 Integration:</strong>
-            <ul className="list-disc list-inside mt-2 space-y-1">
-              <li>Cloud storage active ✅</li>
-              <li>Secure file uploads ✅</li>
-              <li>File sharing links ✅</li>
-              <li>Chat attachments ready ✅</li>
-            </ul>
-          </div>
-        </div>
-      </div>
-    </CardContent>
-  </Card>
-);
 
 export default TeamMessenger;
