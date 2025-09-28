@@ -251,11 +251,10 @@ const ChatInterface = ({ selectedRoom, onRoomSelect }) => {
               <Button 
                 onClick={handleSendMessage} 
                 disabled={!messageInput.trim()}
-                size="sm"
-                aria-label="Send message"
+                className="flex items-center space-x-1"
               >
                 <Send className="h-4 w-4" />
-                <span className="sr-only">Send</span>
+                <span className="hidden sm:inline">Send</span>
               </Button>
             </div>
           </div>
