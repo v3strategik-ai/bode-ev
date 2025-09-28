@@ -51,7 +51,8 @@ const FilesInterface = ({ selectedRoom }) => {
   const loadFiles = async () => {
     try {
       setLoading(true);
-      const response = await fileService.listFiles(selectedFolder || null);
+      const folderParam = selectedFolder === 'all' ? null : selectedFolder;
+      const response = await fileService.listFiles(folderParam);
       setFiles(response.files || []);
     } catch (error) {
       console.error('Failed to load files:', error);
