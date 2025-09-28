@@ -71,7 +71,7 @@ const FilesInterface = ({ selectedRoom }) => {
     try {
       for (let i = 0; i < selectedFiles.length; i++) {
         const file = selectedFiles[i];
-        const folder = selectedFolder || 'documents';
+        const folder = selectedFolder === 'all' ? 'documents' : selectedFolder;
         
         await fileService.uploadFile(file, folder, selectedRoom?.id);
         
