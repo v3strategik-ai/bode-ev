@@ -37,7 +37,7 @@ const FilesInterface = ({ selectedRoom }) => {
   const fileInputRef = useRef(null);
 
   const folders = [
-    { value: '', label: 'All Files' },
+    { value: 'all', label: 'All Files' },
     { value: 'documents', label: 'Documents' },
     { value: 'images', label: 'Images' },
     { value: 'videos', label: 'Videos' },
