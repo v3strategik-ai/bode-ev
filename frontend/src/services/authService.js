@@ -1,10 +1,10 @@
 import axios from 'axios';
 
-const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'https://evcrm-saas.preview.emergentagent.com/api';
+const API_BASE_URL = process.env.REACT_APP_BACKEND_URL || 'https://evcrm-saas.preview.emergentagent.com';
 
 class AuthService {
   constructor() {
-    this.baseURL = `${API_BASE_URL}/messenger`;
+    this.baseURL = `${API_BASE_URL}/api/messenger`;
     
     // Create axios instance with default config
     this.api = axios.create({
