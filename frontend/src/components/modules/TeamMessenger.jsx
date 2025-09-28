@@ -17,6 +17,10 @@ import {
 import { useAuth } from '../../contexts/messenger/AuthContext';
 import { useWebSocket } from '../../contexts/messenger/WebSocketContext';
 import AuthContainer from '../messenger/auth/AuthContainer';
+import ChatInterface from '../messenger/chat/ChatInterface';
+import RoomsInterface from '../messenger/rooms/RoomsInterface';
+import FilesInterface from '../messenger/files/FilesInterface';
+import CallsInterface from '../messenger/calls/CallsInterface';
 
 const TeamMessenger = () => {
   const { user, isAuthenticated, logout, loading } = useAuth();
