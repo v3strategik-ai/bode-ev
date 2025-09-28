@@ -378,11 +378,11 @@ metadata:
 
 test_plan:
   current_focus:
-    - "File Upload System"
-    - "File Management APIs"
-    - "AWS S3 Integration Status"
-    - "File Security & Access Control"
-    - "Database Integration"
+    - "Team Messenger Navigation Integration"
+    - "Authentication Flow Testing"
+    - "WebSocket Connection Testing"
+    - "React Context Integration"
+    - "UI/UX Integration"
   stuck_tasks: []
   test_all: false
   test_priority: "high_first"
